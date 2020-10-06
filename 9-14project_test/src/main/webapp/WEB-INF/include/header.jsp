@@ -33,7 +33,7 @@
       <a href="IY_listLoad">연극찾기</a>
       <a href="IY_re01">예매하기</a>
       <a href="IY_board_nlist">게시판</a>
-      <a href="#">극장 찾기</a>
+      <a href="#">고객센터</a>
     </div>
     </div>
   
