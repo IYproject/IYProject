@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,11 @@ import com.lifetheater.service.RepService;
 import com.lifetheater.vo.FBoardContVO;
 import com.lifetheater.vo.FBoardVO;
 import com.lifetheater.vo.FRepContVO;
+import com.lifetheater.vo.NBoardContVO;
 import com.lifetheater.vo.NBoardVO;
+import com.lifetheater.vo.PBoardContVO;
 import com.lifetheater.vo.PBoardVO;
+import com.lifetheater.vo.UserVO;
 
 @Controller
 public class IY_board {
@@ -84,25 +88,46 @@ public class IY_board {
 		return "board/board_flist";
 	}
 	@GetMapping("/IY_board_fwrite")
-	public String board_fwrite() {
-		return "board/board_fwrite";
+	public String board_fwrite(HttpSession session) {
+		UserVO u = null;
+		if(session.getAttribute("login") == null) {
+			return "/user/login";
+		}else{//로그인정보안에 membertype을 확인해야대요
+			u = (UserVO)session.getAttribute("login");
+			if(u.getMembertype()!='1') {
+				return "redirect:/IY_board_flist";
+			}else {
+				return "board/board_fwrite";
+			}
+		}
 	}
 	@GetMapping("/IY_board_fedit")
 	public String board_fedit() {
 		return "board/board_fedit";
 	}
 	@GetMapping("IY_board_fcont")
-	public String board_fcont(int fb_num,Model m) {
+	public String board_fcont(int fb_num,Model m,HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		List<FRepContVO> frContList = null;
+		if(request.getParameter("order") == null) {
+			frContList = this.repService.selectFreCont(fb_num);//등록순
+		}
+		else if(Integer.parseInt((String)request.getParameter("order")) == 1) {
+			 frContList = this.repService.selectFreCont(fb_num);//등록순
+			 System.out.println("등록순");
+		}else if(Integer.parseInt((String)request.getParameter("order")) == 2) {
+			 frContList = this.repService.selectFreCont2(fb_num);//최신순
+			 System.out.println("최신순");
+		}
 		FBoardContVO fbCont = this.Service.selectFBCont(fb_num);
-		List<FRepContVO> frContList = this.repService.selectFreCont(fb_num);
-		int totalRep = this.repService.totalRep(fb_num);
 		this.Service.fHitUp(fb_num);
+		int totalRep = this.repService.totalRep(fb_num);
 		m.addAttribute("fbCont",fbCont);
 		m.addAttribute("frContList", frContList);
 		m.addAttribute("totalRep",totalRep);
 		for(FRepContVO a : frContList) {
 			System.out.println("중간 확인 : "+a.getName()+", "+a.getFb_reply_cont()+", "+a.getFb_reply_date()+ 
-					", "+a.getFb_reply_reply_name()+", "+a.getFb_reply_reply_cont());
+					", "+a.getFb_reply_reply_name()+", "+a.getFb_reply_reply_cont()+", "+a.getDel_ck());
 		}
 		return "board/board_fcont";
 	}
@@ -155,15 +180,28 @@ public class IY_board {
 		return "board/board_plist";
 	}
 	@GetMapping("/IY_board_pwrite")
-	public String board_pwrite() {
-		return "board/board_pwrite";
+	public String board_pwrite(HttpSession session) {
+		UserVO u = null;
+		if(session.getAttribute("login") == null) {
+			return "/user/login";
+		}else{//로그인정보안에 membertype을 확인해야대요
+			u = (UserVO)session.getAttribute("login");
+			if(u.getMembertype()!='2') {
+				return "redirect:/IY_board_plist";
+			}else {
+				return "board/board_pwrite";
+			}
+		}
 	}
 	@GetMapping("/IY_board_pedit")
 	public String board_pedit() {
 		return "board/board_pedit";
 	}
 	@GetMapping("IY_board_pcont")
-	public String board_pcont() {
+	public String board_pcont(int pb_num,Model m) {
+		this.Service.pHitUp(pb_num);
+		PBoardContVO pbCont = this.Service.selectPBCont(pb_num);
+		m.addAttribute("pbCont",pbCont);
 		return "board/board_pcont";
 	}
 	
@@ -214,15 +252,28 @@ public class IY_board {
 		return "board/board_nlist";
 	}
 	@GetMapping("/IY_board_nwrite")
-	public String board_nwrite() {
-		return "board/board_nwrite";
+	public String board_nwrite(HttpSession session) {
+		UserVO u = null;
+		if(session.getAttribute("login") == null) {
+			return "/user/login";
+		}else{//로그인정보안에 membertype을 확인해야대요
+			u = (UserVO)session.getAttribute("login");
+			if(u.getMembertype()!='3') {
+				return "redirect:/IY_board_nlist";
+			}else {
+				return "board/board_nwrite";
+			}
+		}
 	}
 	@GetMapping("/IY_board_nedit")
-	public String board_nedit() {
+	public String board_nedit(HttpSession session) {
 		return "board/board_nedit";
 	}
 	@GetMapping("IY_board_ncont")
-	public String board_ncont() {
+	public String board_ncont(int nb_num,Model m){
+		this.Service.nHitUp(nb_num);
+		NBoardContVO nbCont = this.Service.selectNBCont(nb_num);
+		m.addAttribute("nbCont",nbCont);
 		return "board/board_ncont";
 	}
 	
@@ -239,6 +290,18 @@ public class IY_board {
 		return "redirect:IY_board_flist";
 	}
 	
+	@PostMapping("/pb_update")
+	public String pbUpdate(@RequestBody PBoardVO pBoardVO) {
+		this.Service.pBoardUpdate(pBoardVO);
+		return "redirect:IY_board_plist";
+	}
+	
+	@PostMapping("/nb_update")
+	public String nbUpdate(@RequestBody NBoardVO nBoardVO) {
+		this.Service.nBoardUpdate(nBoardVO);
+		return "redirect:IY_board_nlist";
+	}
+	
 	
 	@PostMapping("/pb_insert")
 	public String pbInsert(@RequestBody PBoardVO pBoardVO) {
@@ -253,10 +316,55 @@ public class IY_board {
 	}
 	
 	@GetMapping("/IY_fboardEdit")
-	public String fboardFedit(int fb_num,Model m){
-		FBoardVO fb = this.Service.selectCont(fb_num);
+	public String fboardFedit(int fb_num,Model m,HttpSession session){
+		FBoardVO fb = this.Service.selectFCont(fb_num);
 		m.addAttribute("fbCont", fb);
-		return "board/board_fedit";
+		UserVO u = null;
+		if(session.getAttribute("login") == null) {
+			return "/user/login";
+		}else{//로그인정보안에 membertype을 확인해야대요
+			u = (UserVO)session.getAttribute("login");
+			if(u.getMembertype()!='1') {
+				return "redirect:/IY_board_flist";
+			}else {
+				return "board/board_fedit";
+			}
+		}
+		
+	}
+	
+	@GetMapping("/IY_nboardEdit")
+	public String nboardFedit(int nb_num,Model m,HttpSession session){
+		NBoardVO nb = this.Service.selectNCont(nb_num);
+		m.addAttribute("nbCont", nb);
+		UserVO u = null;
+		if(session.getAttribute("login") == null) {
+			return "/user/login";
+		}else{//로그인정보안에 membertype을 확인해야대요
+			u = (UserVO)session.getAttribute("login");
+			if(u.getMembertype()!='3') {
+				return "redirect:/IY_board_nlist";
+			}else {
+				return "board/board_nedit";
+			}
+		}
+	}
+	
+	@GetMapping("/IY_pboardEdit")
+	public String pboardFedit(int pb_num,Model m,HttpSession session){
+		PBoardVO pb = this.Service.selectPCont(pb_num);
+		m.addAttribute("pbCont", pb);
+		UserVO u = null;
+		if(session.getAttribute("login") == null) {
+			return "/user/login";
+		}else{//로그인정보안에 membertype을 확인해야대요
+			u = (UserVO)session.getAttribute("login");
+			if(u.getMembertype()!='2') {
+				return "redirect:/IY_board_plist";
+			}else {
+				return "board/board_pedit";
+			}
+		}
 	}
 	
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -13,16 +14,18 @@
     	<jsp:include page="../../include/header.jsp" />
     	<div class="board_list_wrap">
     		<div class="board_submenu">
-    			<a class=board_list_st href="IY_board_nlist">공지 게시판</a>
-    			<a class=board_list_st href="IY_board_flist">자유 게시판</a>
-    			<a class=board_list_st id="board_list_st_last" href="IY_board_plist">홍보 게시판</a>
+    			<a class=board_list_st href="IY_board_nlist?page=1">공지 게시판</a>
+    			<a class=board_list_st href="IY_board_flist?page=1">자유 게시판</a>
+    			<a class=board_list_st id="board_list_st_last" href="IY_board_plist?page=1">홍보 게시판</a>
     		</div>
     		<div>
     		<div>
     			<h2 class="board_list_bt"><b>자유 게시판</b></h2>			
     		</div>	
     		<div>
+    				<c:if test="${login.membertype eq '1'.charAt(0)}">
             <button type="button" onclick="location='IY_board_fwrite'" class="board_write_btn">글쓰기</button>
+            </c:if>
     		</div>	
     		</div>
         	<div>
@@ -45,9 +48,9 @@
                 	<c:forEach var="fb" items="${flist}" >
                     <div class="board_item" >
                       <div class="board_num">${fb.fb_num}</div>
-                      <div class="board_tit"><a href="IY_board_fcont?fb_num=${fb.fb_num}">${fb.fb_title}</a></div>
+                      <div class="board_tit"><a href="IY_board_fcont?fb_num=${fb.fb_num}&page=${param.page}">${fb.fb_title}</a></div>
                       <div class="board_writer">${fb.email}</div>
-                      <div class="board_date">${fb.fb_date}</div>
+                      <div class="board_date">${f:substring(fb.fb_date,0,10)}</div>
                       <div class="board_view">${fb.fb_hit}</div>
                     </div>
                     </c:forEach>
@@ -70,7 +73,12 @@
             <%-- 검색전 페이징 --%> 
             <c:if test="${(empty condition) && (empty keyword)}">  
               <c:if test="${page>1}">
+              <c:if test="${startpage-1==0}">
               <a href="IY_board_flist?page=${startpage}" class="board_bt board_first">처음 페이지</a>
+              </c:if>
+              <c:if test="${startpage-1>0}">
+              <a href="IY_board_flist?page=${startpage-1}" class="board_bt board_first">처음 페이지</a>
+              </c:if>
               <a href="IY_board_flist?page=${page-1}" class="board_bt board_prev">이전 페이지</a>
               </c:if>
               <c:forEach var="f" begin="${startpage}" end="${endpage}" step="1">
@@ -86,7 +94,12 @@
          
               <c:if test="${page<maxpage}">
                <a href="IY_board_flist?page=${page+1}" class="board_bt board_next">다음 페이지</a>
+               <c:if test="${maxpage>endpage+1}">
+              <a href="IY_board_flist?page=${endpage+1}" class="board_bt board_last">마지막 페이지</a>
+              </c:if>
+              <c:if test="${maxpage<endpage+1}">
               <a href="IY_board_flist?page=${endpage}" class="board_bt board_last">마지막 페이지</a>
+              </c:if>
               </c:if>
               </c:if>
               

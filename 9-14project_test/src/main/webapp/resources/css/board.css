@@ -59,7 +59,7 @@ a {
 	display: inline-block;
 	font: inherit;
 	border-right: 1px solid #ccc;
-	padding-right:5px;
+	margin-right: 5px;
 }
 #board_list_st_last{
 	border:none;
@@ -99,6 +99,8 @@ a {
 .board_list .board_num {
     width: 10%;
 }
+
+
 
 .board_list .board_tit {
     width: 55%;
@@ -410,6 +412,49 @@ a {
   color: #b1b1b1eb;
   cursor: pointer;
 }
+
+
+
+.admin_board_name {
+	width:10%;
+}
+.admin_board_Tname{
+	width:15%;
+}
+.admin_board_email{
+	width:10%;
+}
+.admin_board_phone{
+	width:20%;
+}
+.admin_board_date{
+	width:20%;
+}
+.admin_board_membershipCh{
+	width:15%
+}
+.admin_board_membership{
+	width:15%
+}
+.admin_board_belong{
+	width:10%;
+}
+#board_cont_lastbtn:hover ,#board_cont_firstbtn:hover{
+	cursor: pointer;
+}
+.board_cont_Act{
+	color: black;
+}
+.admin_board_SignUpDate{
+	width:10%;
+}
+.admin_board_Ttitle{
+	width:20%;
+}
+
+
+
+
 
 
   

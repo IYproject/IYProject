@@ -36,6 +36,23 @@ public class RepDAOImpl implements RepDAO {
 		this.sqlSession.insert("rep_rep_insert",re);
 		
 	}
+
+	@Override
+	public void fReplyDelete(FRepContVO freply) {
+		this.sqlSession.update("fReplyDelete",freply);
+		
+	}
+
+	@Override
+	public List<FRepContVO> selectFreCont2(int fb_num) {
+		return this.sqlSession.selectList("select_fre_cont2",fb_num);
+	}
+
+	@Override
+	public void frepUpdate(FReplyVO rvo) {
+		this.sqlSession.update("frepUpdate", rvo);
+		
+	}
 	
 	
 	

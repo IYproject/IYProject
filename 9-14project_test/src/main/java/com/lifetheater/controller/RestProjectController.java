@@ -36,6 +36,7 @@ import com.lifetheater.service.RepService;
 import com.lifetheater.service.UserService;
 import com.lifetheater.service.UserSha256;
 import com.lifetheater.vo.FBoardVO;
+import com.lifetheater.vo.FRepContVO;
 import com.lifetheater.vo.FReplyVO;
 import com.lifetheater.vo.GugunVO;
 import com.lifetheater.vo.NBoardVO;
@@ -105,7 +106,8 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 			
 			//정보가 일치할시 로그인 성공
 			if(user!=null) {
-				if((user.getLoginWay()).length()==1) {
+				System.out.println(user.getLoginWay());
+				if(user.getLoginWay().equals("1")) {
 				String user_pw = uservo.getPw();
 		 		uservo.setPw(UserSha256.encrypt(user_pw));
 				if(user.getPw().equals(uservo.getPw())) {
@@ -282,7 +284,6 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 		public void fbdelete(@RequestBody FBoardVO fboard) {
 			System.out.println(fboard.getFb_num());
 			bservice.fBoardDelete(fboard);
-			
 		}
 		
 		@PostMapping("/pbdelete")
@@ -298,6 +299,27 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 			bservice.nBoardDelete(nboard);	
 			
 			
+		}
+		
+		@PostMapping("/fbreplydelete")
+		public void fbreplydelete(@RequestBody FRepContVO freply) {
+			System.out.println(freply);
+			repService.fReplyDelete(freply);
+		}
+		
+		@PostMapping("frep_update")
+		public ResponseEntity<Void> frepUpdate(@RequestBody FReplyVO rvo){
+			ResponseEntity<Void> entity = null;
+			try {
+				System.out.println("rvo중간 확인 : "+rvo.getFreply_num()+", "+rvo.getFb_reply_cont());
+				this.repService.frepUpdate(rvo);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				entity =new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+			}
+			
+			return entity;
 		}
 		
 		

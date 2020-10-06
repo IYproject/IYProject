@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.lifetheater.service.UserService;
 import com.lifetheater.service.UserSha256;
@@ -45,20 +48,13 @@ public class IY_user {
 	}
 	@GetMapping("/IY_login")
 	public String login(HttpSession session) { //로그인 페이지
-		if(session.getAttribute("login")==null) {
 			return "user/login";
-		}
-		return "lifetheater";
 	}
 	@GetMapping("/IY_moreinfo")
 	public String moreinfo() {
 		return "user/moreinfo";
 	}
-	
-	@GetMapping("/IY_pw_update_page")
-	public String pw_update() {
-		return "user/pw_update";
-	}
+
 	
 	@PostMapping("/checkEmail")
 	public String checkEmail(UserVO user,HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException{

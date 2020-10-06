@@ -18,6 +18,7 @@
 </head>
 <body>
 	<jsp:include page="../../include/header.jsp" />
+
 	<div class="board_write_wrap">
 	<form action="board_write_ok" method="POST" id="board_write_submit">
 		<h2 class="board_write_title"><b>공지 게시판</b></h2>

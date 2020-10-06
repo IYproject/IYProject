@@ -129,14 +129,14 @@
     		  $(data).each(function(){
     			  str+=
     			  "<div class='main-rank-item'>"
-    			     +"<div class='main-rank-item-rtxt'>"
+    			     +"<div class='main-rank-item-rtxt' style=margin-bottom:20px;>"
     			          +"<h1>"+(rankNum++)+"위</h1>"
     			        +"</div>"
     			      +"<a href='#'>"
     			        +"<div class='main-rank-item-card'>"
     			          +"<div class='main-rank-item-inner'>"
     			             +"<div class='main-rank-item-front'>"
-    			            +"<img src='"+this.poster_url+"'/>"
+    			            +"<img src='"+this.poster_url+"' style=width=420px; height=380px;/>"
     			          +"</div>"
     			          +"<div class='main-rank-item-back'>"
     			          +"<div class='main-rank-item-disctxt'>"  
