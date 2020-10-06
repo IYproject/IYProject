@@ -34,7 +34,6 @@
 		<jsp:include page="../../include/footer.jsp" />
 	<script>
 		var url;
-		
 
 	   
 		

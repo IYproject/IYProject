@@ -14,9 +14,9 @@
     	<jsp:include page="../../include/header.jsp" />
     	<div class="board_list_wrap">
     		<div class="board_submenu">
-    			<a class=board_list_st href="IY_board_nlist">공지 게시판</a>
-    			<a class=board_list_st href="IY_board_flist">자유 게시판</a>
-    			<a class=board_list_st id="board_list_st_last" href="IY_board_plist">홍보 게시판</a>
+    			<a class=board_list_st href="IY_board_nlist?page=1">공지 게시판</a>
+    			<a class=board_list_st href="IY_board_flist?page=1">자유 게시판</a>
+    			<a class=board_list_st id="board_list_st_last" href="IY_board_plist?page=1">홍보 게시판</a>
     		</div>
     		<div>
     		<div>
@@ -48,7 +48,7 @@
                 	<c:forEach var="fb" items="${flist}" >
                     <div class="board_item" >
                       <div class="board_num">${fb.fb_num}</div>
-                      <div class="board_tit"><a href="IY_board_fcont?fb_num=${fb.fb_num}">${fb.fb_title}</a></div>
+                      <div class="board_tit"><a href="IY_board_fcont?fb_num=${fb.fb_num}&page=${param.page}">${fb.fb_title}</a></div>
                       <div class="board_writer">${fb.email}</div>
                       <div class="board_date">${f:substring(fb.fb_date,0,10)}</div>
                       <div class="board_view">${fb.fb_hit}</div>

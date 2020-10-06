@@ -14,22 +14,19 @@
 		<div class="board_contentBox">
 			<!-- 헤더 시작 -->
 			<div id="board_cont_header">
-			<div id="board_cont_fb_num" style="display: none;">${fbCont.fb_num}</div>
-			<h3 id="board_cont_title">${fbCont.fb_title}</h3>
+			<div id="board_cont_fb_num" style="display: none;">${pbCont.pb_num}</div>
+			<h3 id="board_cont_title">${pbCont.pb_title}</h3>
 				<div id="board_cont_writerInfo">
 					<div id="board_cont_profile">
 						<div id="board_cont_nameBox">
-							${fbCont.name}
+							${pbCont.name}
 						</div>
 						<div id="board_cont_article_info">
 							<span id="board_cont_uploadDate">
-								${fbCont.fb_date}
+								${pbCont.pb_date}
 							</span>
 							<span id="board_cont_hitCount">
-								조회수 ${fbCont.fb_hit}
-							</span>
-							<span id="board_cont_comCount">
-								댓글 ${totalRep}
+								조회수 ${pbCont.pb_hit}
 							</span>
 						</div>
 					</div>
@@ -39,13 +36,13 @@
 			<!-- 내용시작 -->
 			<div id="board_cont_body">
 				<div id="board_cont_content">
-					${fbCont.fb_cont}
+					${pbCont.pb_cont}
 				</div>
 				<div id="board_cont_comCount2">
 					<div class="board_cont_btnBox"> <!-- 목록버튼 -->
-						<button class="board_cont_listbtn" onclick="location='IY_board_flist'">목록</button>
+						<button class="board_cont_listbtn" onclick="location='IY_board_plist?page=${param.page}'">목록</button>
 						<!-- 로그인된 회원의 이메일 equlas 게시글 작성자의 이메일  => 수정,삭제 버튼 표시하기-->
-						<c:if test="${login.email eq fbCont.email}">
+						<c:if test="${login.email eq pbCont.email}">
 						<button class="board_cont_delbtn" onclick="delcheck();">삭제</button>
 						<button class="board_cont_editbtn" onclick="location='IY_fboardEdit?fb_num=${fbCont.fb_num}'">수정</button>
 						</c:if>
