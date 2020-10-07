@@ -94,8 +94,9 @@
           </li>
         </ul>
       
-    
       </div>
+      
+      <div class="clear"></div>
       
       <!-- pagination -->
       <nav class="faq-pagination">
