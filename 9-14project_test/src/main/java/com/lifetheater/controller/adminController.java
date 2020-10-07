@@ -31,7 +31,7 @@ public class adminController {
 		int page=1; 
 		int limit=10;
 		if(session.getAttribute("login") == null) {//비회원인 사람
-			return "/controller/IY_login";
+			return "/user/login";
 		}else{
 			UserVO uservo=(UserVO)session.getAttribute("login");
 			if(uservo.getMembertype()!='3') {//로그인은했지만 관리자가 아닌사람
@@ -125,7 +125,7 @@ public class adminController {
 		int page=1; 
 		int limit=10; 
 		if(session.getAttribute("login") == null) {//비회원인 사람
-			return "/controller/IY_login";
+			return "/user/login";
 		}else{
 			UserVO u=(UserVO)session.getAttribute("login");
 			if(u.getMembertype()!='3') {//로그인은했지만 관리자가 아닌사람

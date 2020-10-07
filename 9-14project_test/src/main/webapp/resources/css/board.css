@@ -232,7 +232,7 @@ a {
 /*�Խ��� ����*/
 .board_contentBox{
 	padding: 29px 29px 29px 29px;
-  border: 1px solid #ebecef;
+  border: 1px solid rgb(0 0 0 / 17%);
   width:840px;
   border-radius: 6px;
 }

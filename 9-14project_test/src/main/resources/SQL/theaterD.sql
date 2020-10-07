@@ -37,3 +37,63 @@ values(td_seq.nextval,'wlghksl12@daum.net','테스트 연극5','2020.10.06~2020.
 select * from	(select email,td_title,td_viewdays,td_agegrade,td_check,td_signUp_date from (select * from theaterD	order by td_signUp_date asc))
 
 select * from theaterD;
+
+
+
+
+
+
+
+
+
+
+create table basictheater(
+ td_no int primary key, -- 기본정보테이블을 구분하는 시퀀스 값
+ email varchar2(100) not null, --이메일 
+ td_title varchar2(500) not null, --제목
+ td_viewdays varchar2(100) not null, --상영기간
+ td_agegrade varchar2(100) not null, --등급(~세 이상 관람가)
+ td_actor varchar2(1000) not null, --출연진
+ td_tinfo varchar2(2000) not null, --공연시간안내 --설명
+ td_mainposter varchar2(4000) not null, --메인포스터
+ td_detailposter varchar2(4000) not null, --게시판내용(상세이미지 등)
+ td_tiketinginfo varchar2(200), --1회시간 (해당 날짜 제목)
+ td_check char not null, --게시글 승인 확인 // 등급 0 // 취소 1 // 대기 2 확인
+ td_signUp_date date  -- 승인 요청 날짜
+)
+
+create table ticketingInfo(
+ td_no int, -- 기본정보테이블을 참조하는 값(외래키)
+ ticketing_no int primary key,
+ td_runtime varchar2(100) not null, --관람시간   > 2020.08.13 14.00~16.00
+ td_stgrade1 varchar2(100) not null, --좌석 등급  > 자유석
+ td_stprice1 varchar2(100) not null --좌석가격     > 13000
+)
+drop table ticketingInfo;
+
+alter table ticketingInfo add constraint fk_td_no foreign key(td_no) references basictheater(td_no);
+--외래키 제약조건 추가
+create sequence seq_td_no--기본정보 연극 정보 테이블 시퀀스
+start with 1
+increment by 1
+nocache
+
+create sequence seq_ticketing_no --연극 테이블의 예매 정보 테이블 시퀀스
+start with 1
+increment by 1
+nocache
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
