@@ -59,7 +59,8 @@ create table basictheater(
  td_detailposter varchar2(4000) not null, --게시판내용(상세이미지 등)
  td_tiketinginfo varchar2(200), --1회시간 (해당 날짜 제목)
  td_check char not null, --게시글 승인 확인 // 등급 0 // 취소 1 // 대기 2 확인
- td_signUp_date date  -- 승인 요청 날짜
+ td_signUp_date date,  -- 승인 요청 날짜
+ td_location varchar2(200) not null--시,도
 )
 
 create table ticketingInfo(
@@ -70,6 +71,7 @@ create table ticketingInfo(
  td_stprice1 varchar2(100) not null --좌석가격     > 13000
 )
 drop table ticketingInfo;
+drop table basictheater;
 
 alter table ticketingInfo add constraint fk_td_no foreign key(td_no) references basictheater(td_no);
 --외래키 제약조건 추가
