@@ -44,6 +44,9 @@
 	font-wieght:400;
 	background:#fff;
 }
+#lnb ul li a:hover{
+	color:#01738b;
+}
 
 
 #contents{
