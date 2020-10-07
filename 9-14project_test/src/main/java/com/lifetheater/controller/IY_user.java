@@ -75,6 +75,36 @@ public class IY_user {
 		this.user_Service.change_key(user);
 		return "redirect:/lifetheater";/*메인페이지로 이동*/
 	}
+	@GetMapping("/pw_updatePage")
+	public String pw_updatePage(HttpServletRequest request,HttpSession session) {
+		try {
+			request.setCharacterEncoding("utf-8");
+			if(session.getAttribute("login") != null) {
+				return "redirect:/lifetheater";
+			}
+			else if(session.getAttribute("pw_chKey") == null) {//비인증자
+				System.out.println("a");
+				return "redirect:/IY_pw_search";
+			}else {
+				String sessionKey = (String)session.getAttribute("pw_chKey");
+				String paramKey = (String)request.getParameter("userKey");
+				if(paramKey.equals(sessionKey)) {//주소창에 입력한 비인증 사용자
+					System.out.println("c");
+					session.removeAttribute("pw_chKey");
+					return "user/pw_update";
+				}else{
+					System.out.println("paramKey : "+paramKey);
+					System.out.println("sessionKey : "+sessionKey);
+					System.out.println("b");
+					return "redirect:/IY_pw_search";
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/lifetheater";
+	}
+	
 }
 
 
