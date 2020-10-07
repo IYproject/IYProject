@@ -48,7 +48,7 @@
                 	<c:forEach var="fb" items="${flist}" >
                     <div class="board_item" >
                       <div class="board_num">${fb.fb_num}</div>
-                      <div class="board_tit"><a href="IY_board_fcont?fb_num=${fb.fb_num}&page=${param.page}">${fb.fb_title}</a></div>
+                      <div class="board_tit"><a href="IY_board_fcont?fb_num=${fb.fb_num}&page=${param.page}&order=1">${fb.fb_title}</a></div>
                       <div class="board_writer">${fb.email}</div>
                       <div class="board_date">${f:substring(fb.fb_date,0,10)}</div>
                       <div class="board_view">${fb.fb_hit}</div>

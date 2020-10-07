@@ -44,7 +44,7 @@
 						<!-- 로그인된 회원의 이메일 equlas 게시글 작성자의 이메일  => 수정,삭제 버튼 표시하기-->
 						<c:if test="${login.email eq pbCont.email}">
 						<button class="board_cont_delbtn" onclick="delcheck();">삭제</button>
-						<button class="board_cont_editbtn" onclick="location='IY_fboardEdit?fb_num=${fbCont.fb_num}'">수정</button>
+						<button class="board_cont_editbtn" onclick="location='IY_pboardEdit?pb_num=${pbCont.pb_num}'">수정</button>
 						</c:if>
 					</div>
 					<div class="clear"></div>
