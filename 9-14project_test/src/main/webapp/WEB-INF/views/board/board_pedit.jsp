@@ -22,8 +22,8 @@
 	<jsp:include page="../../include/header.jsp" />
 	<div class="board_write_wrap">
 		<h2 class="board_write_title"><b>홍보 게시판</b></h2>
-		<span id="board_fb_num">${pbCont.fb_num}</span>
-		<input placeholder="제목을 입력해 주세요." id="board_title" style="height: 40px;" value="${pbCont.fb_title}" />
+		<span id="board_fb_num">${pbCont.pb_num}</span>
+		<input placeholder="제목을 입력해 주세요." id="board_title" style="height: 40px;" value="${pbCont.pb_title}" />
 		<textarea id="board_summernote">${pbCont.pb_cont}</textarea>
 	
 		<div id="board_write_btmbtn">
@@ -97,7 +97,7 @@
 				return false;
 			} else {
 				const boardInfo={
-						pb_num:$("#board_fb_num").text(),
+						pb_num:$("#board_pb_num").text(),
 						pb_title:$("#board_title").val(),
 		    		pb_cont:$("#board_summernote").val(),
 		    		pb_img_url:url,
