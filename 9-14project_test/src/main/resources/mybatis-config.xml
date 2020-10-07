@@ -16,7 +16,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lifetheater.vo.FRepContVO" alias="recont" />
 		<typeAlias type="com.lifetheater.vo.GugunVO" alias="g" />
 		<typeAlias type="com.lifetheater.vo.UserListVO" alias="ulv" />
-		<typeAlias type="com.lifetheater.vo.TheaterDVO" alias="tdvo" />
-		<typeAlias type="com.lifetheater.vo.TheaterDListVO" alias="tdlvo" />
+		<typeAlias type="com.lifetheater.vo.BasicTheaterVO" alias="tdvo" />
+		<typeAlias type="com.lifetheater.vo.BasicTheaterListVO" alias="tdlvo" />
+		<typeAlias type="com.lifetheater.vo.TicketingInfoVO" alias="tInfo" />
 	</typeAliases>
 </configuration>

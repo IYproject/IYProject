@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifetheater.service.AdminService;
-import com.lifetheater.vo.TheaterDListVO;
+import com.lifetheater.vo.BasicTheaterListVO;
 import com.lifetheater.vo.UserListVO;
 import com.lifetheater.vo.UserVO;
 
@@ -121,7 +121,7 @@ public class adminController {
 
 
 	@GetMapping("/IY_amdin_theaterCh")
-	public String view_check(Model m,HttpServletRequest request,TheaterDListVO tdlvo,HttpSession session) {//연극 VO클래스 바꿔야댐
+	public String view_check(Model m,HttpServletRequest request,BasicTheaterListVO tdlvo,HttpSession session) {//연극 VO클래스 바꿔야댐
 		int page=1; 
 		int limit=10; 
 		if(session.getAttribute("login") == null) {//비회원인 사람
@@ -158,8 +158,8 @@ public class adminController {
 				int totalCount=this.service.getTotalTheaterCount(tdlvo);//총 유져 수
 				System.out.println(totalCount);
 
-				List<TheaterDListVO> list=service.getTheaterList(tdlvo); 
-				for(TheaterDListVO l : list) { 
+				List<BasicTheaterListVO> list=service.getTheaterList(tdlvo); 
+				for(BasicTheaterListVO l : list) { 
 					System.out.println(l);
 				}
 
@@ -183,7 +183,7 @@ public class adminController {
 	}
 
 	@PostMapping("/td_cancle")
-	public ResponseEntity<Void> tdCancle(@RequestBody TheaterDListVO tdlvo){
+	public ResponseEntity<Void> tdCancle(@RequestBody BasicTheaterListVO tdlvo){
 		ResponseEntity<Void> entity = null; 
 		try {
 			this.service.tdCancle(tdlvo.getTd_no());
@@ -196,7 +196,7 @@ public class adminController {
 	}
 
 	@PostMapping("/td_approve")
-	public ResponseEntity<Void> tdApprove(@RequestBody TheaterDListVO tdlvo){
+	public ResponseEntity<Void> tdApprove(@RequestBody BasicTheaterListVO tdlvo){
 		ResponseEntity<Void> entity = null; 
 		try {
 			this.service.tdApprove(tdlvo.getTd_no());

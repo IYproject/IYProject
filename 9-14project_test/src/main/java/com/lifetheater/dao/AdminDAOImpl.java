@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lifetheater.vo.TheaterDListVO;
+import com.lifetheater.vo.BasicTheaterListVO;
 import com.lifetheater.vo.UserListVO;
 
 @Repository
@@ -37,12 +37,12 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int getTotalTheaterCount(TheaterDListVO tdlvo) {
+	public int getTotalTheaterCount(BasicTheaterListVO tdlvo) {
 		return this.sqlSession.selectOne("getTotalTheaterCount",tdlvo);
 	}
 
 	@Override
-	public List<TheaterDListVO> getTheaterList(TheaterDListVO tdlvo) {
+	public List<BasicTheaterListVO> getTheaterList(BasicTheaterListVO tdlvo) {
 		return this.sqlSession.selectList("getTheaterList",tdlvo);
 	}
 

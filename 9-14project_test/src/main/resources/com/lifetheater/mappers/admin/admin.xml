@@ -41,14 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update tbl_inyeon_user set membertype=2,belong=#{belong} where email=#{email}
 	</update>
 	<select id="getTotalTheaterCount" resultType="int">
-		select count(*) from theaterD
+		select count(*) from basictheater
 	</select>
 	
 	<select id="getTheaterList" resultType="tdlvo">
 		select * from
 		(select rowNum rNum,td_no,email,td_title,td_viewdays,td_agegrade,td_check,td_signUp_date 
 		from
-		(select * from theaterD
+		(select * from basictheater
 		<where>
 			<if test="condition==''">
 			</if>
@@ -64,11 +64,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="tdCancle">
-		update theaterD set td_check='0' where td_no=#{td_no}
+		update basictheater set td_check='0' where td_no=#{td_no}
 	</update>
 	
 	<update id="tdApprove">
-		update theaterD set td_check='2' where td_no=#{td_no}
+		update basictheater set td_check='2' where td_no=#{td_no}
 	</update>
 	
 </mapper>

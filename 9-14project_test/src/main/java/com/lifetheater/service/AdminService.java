@@ -2,7 +2,7 @@ package com.lifetheater.service;
 
 import java.util.List;
 
-import com.lifetheater.vo.TheaterDListVO;
+import com.lifetheater.vo.BasicTheaterListVO;
 import com.lifetheater.vo.UserListVO;
 
 public interface AdminService {
@@ -15,9 +15,9 @@ public interface AdminService {
 
 	void show_memberCh(UserListVO user);
 
-	int getTotalTheaterCount(TheaterDListVO tdlvo);
+	int getTotalTheaterCount(BasicTheaterListVO tdlvo);
 
-	List<TheaterDListVO> getTheaterList(TheaterDListVO tdlvo);
+	List<BasicTheaterListVO> getTheaterList(BasicTheaterListVO tdlvo);
 
 	void tdCancle(int td_no);
 
