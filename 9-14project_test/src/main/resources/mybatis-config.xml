@@ -18,5 +18,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lifetheater.vo.UserListVO" alias="ulv" />
 		<typeAlias type="com.lifetheater.vo.TheaterDVO" alias="tdvo" />
 		<typeAlias type="com.lifetheater.vo.TheaterDListVO" alias="tdlvo" />
+		<typeAlias type="com.lifetheater.vo.SupportHelpVO" alias="helpvo"/>
 	</typeAliases>
 </configuration>

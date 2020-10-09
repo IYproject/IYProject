@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +36,25 @@
 			 preQnANum=-1;
 		 }
 	  })
+	  
+	  loadHelpList();
   })
-  
 
+  
+  function loadHelpList(){
+	  $.ajax(
+		url:"support_help_list",
+		data:,
+		success:
+			function(data){
+				console.log(data);
+			// faq 갯수 보여주기
+		},
+		faild:,
+		
+	    
+	  )
+  }
 </script>
 </head>
 <body>
@@ -96,11 +113,11 @@
     <div class="faq-list-box">
       <p class="faq-list-box-title mb10">
         <strong><span id="faq-list-title">전체</span>
-          <span id="faq-list-cnt">11건</span>
+          <span id="faq-list-cnt">0건</span>
         </strong>
       </p>
     
-      <div class="faq-list">
+      <div class="faq-list" id="faq-list">
         <ul>
           <li>
         	<div class="faq-q on">
