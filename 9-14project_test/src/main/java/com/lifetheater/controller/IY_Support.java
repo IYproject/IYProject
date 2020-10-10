@@ -1,14 +1,14 @@
 package com.lifetheater.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifetheater.service.SupportService;
 import com.lifetheater.vo.SupportHelpVO;
@@ -22,17 +22,20 @@ public class IY_Support {
 	
 	// home - faq
 	@GetMapping("support")
-	public String cc_support()  {
-				
+	public String support() {
 		return "support/support";
-	}
+	}//support()
 	
-	@GetMapping("support_help_list")
+	
+	
+	@RequestMapping("support_help_list")
 	public List<SupportHelpVO> getSupportHelpList(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
 		// load support db data
 		List<SupportHelpVO> list = supportService.getHelpList();
+		
+		System.out.println("support list size : "+ list.size());
 		
 		return list;
 		

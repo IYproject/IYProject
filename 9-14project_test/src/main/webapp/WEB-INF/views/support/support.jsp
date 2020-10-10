@@ -38,22 +38,21 @@
 	  })
 	  
 	  loadHelpList();
-  })
+  });
 
   
   function loadHelpList(){
-	  $.ajax(
-		url:"support_help_list",
-		data:,
-		success:
-			function(data){
-				console.log(data);
-			// faq 갯수 보여주기
-		},
-		faild:,
-		
-	    
-	  )
+	  $.ajax({
+		  url:"${pageContext.request.contextPath}/support_help_list",
+		  type:'GET',
+		  
+		  success:function(data){
+			  console.log(data);
+		  },
+		  error:function(xhr,status,error){
+			  console.log('error  '+error);
+		  }
+	  });
   }
 </script>
 </head>

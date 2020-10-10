@@ -9,6 +9,8 @@ create table tbl_support_help(
   field varchar2(100) not null,-- 영역
   email varchar2(100) not null, --작성자
   edit_date date --등록/수정 날짜
+  
+  
 )
 
 create sequence seq_help_num
@@ -16,6 +18,7 @@ start with 1
 increment by 1
 nocache;
 
+ select * from tbl_support_help;
 
 insert into tbl_support_help values(seq_help_num.nextval,'연극 예매는 언제까지 가능하나요?','연극 상영 1시간 전까지 예매 가능합니다.','연극예매','administrator',sysdate);
 insert into tbl_support_help values(seq_help_num.nextval,'온라인 예매할 때 좌석선택도 가능한가요??','좌석 선택은 제공 하지 않습니다.','연극예매','administrator',sysdate);
