@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<h2 class="board_list_bt" style="margin-bottom: 20px;">
-					<b>회원 유져 등급 변경</b>
+					<b>연극 등록 승인</b>
 				</h2>
 			</div>
 		</div>

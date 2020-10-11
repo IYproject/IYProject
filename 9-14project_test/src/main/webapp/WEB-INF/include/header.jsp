@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,12 @@
     </c:if>
     <c:if test="${login ne null}">
     <a href="IY_logout">로그아웃</a>
-    <a href="IY_mypage">마이페이지</a>
+    <c:if test="${login.membertype eq '3'.charAt(0)}">
+      <a href="IY_admin_userSerch">관리페이지</a>
+    </c:if>
+	  <c:if test="${login.membertype ne '3'.charAt(0)}">
+       <a href="IY_mypage">마이페이지</a>
+    </c:if>
     </c:if>
     </div>
     

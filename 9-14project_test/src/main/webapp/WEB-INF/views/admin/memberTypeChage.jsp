@@ -86,7 +86,7 @@
 					type="button" id="searchflist" value="검색" />
 			</div>
 			
-			<label style="color:gray;">1:일반 회원 2:공연 관계자 3:관리자</label>
+			<label style="color:gray;">0:탈퇴 회원 1:일반 회원 2:공연 관계자 3:관리자</label>
 			<div class="clear"></div>
 			<div class="board_paging">
 				<%-- 검색전 페이징 --%>
