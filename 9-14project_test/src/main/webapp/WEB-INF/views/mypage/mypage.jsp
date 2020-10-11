@@ -24,12 +24,8 @@
       <ul>
         <li><a href="IY_mypage_reservation">예매내역</a></li>
         <li><a href="IY_mypage_point">포인트 내역</a></li>
-        <li><a href="#">게시글 내역</a>
+        <li><a href="IY_mypage_board">게시글 내역</a>
         <li><a href="IY_mypage_edit_user">회원정보</a>
-          <ul class="mypage-lnb-depth">
-            <li><a href="IY_mypage_edit_user">- 개인정보 변경</a></li>
-            <li><a href="IY_mypage_edit_theater">- 선호극장 변경</a></li>
-          </ul>
         </li>
       </ul>
     </nav>
@@ -95,10 +91,7 @@
                   <img src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF166781_200812_101930.gif"/></a>
               
               <table class="mypage-res-cont">
-                <tr>
-                  <th>예매번호</th>
-                  <td colspan="3"><em class="res-num">9102-938-12324</em></td>
-                </tr>
+                
                 <tr>
                   <th>연극명</th>
                   <td colspan="3">
@@ -106,11 +99,15 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>극장</th><td>예술의 전당</td>
-                  <th>관람 인원</th><td>성인 1명</td>
+                  <th>장소</th><td>서울특별시</td>
+                  
                 </tr>
                 <tr>
                   <th>관람일시</th><td colspan="3">2020.08.18 17:00</td>
+                </tr>
+                <tr>
+                  <th>좌석 등급</th><td>R석</td>
+                  <th>관람 인원</th><td> 1명</td>
                 </tr>
                
               </table>
@@ -129,14 +126,14 @@
       <div class="mypage-home-board-wrap">
         <div class="mypage-tit">
           <p>내가 쓴 게시글</p>
-            <a href="#" class="mypage-tit-link">+ 더보기</a>
+            <a href="IY_mypage_board" class="mypage-tit-link">+ 더보기</a>
         </div>
          <div class="clear"></div>
         <div class="mypage-table">
           <table border="1">
             <tr><th class="mypage-table-bno">번호</th><th class="mypage-table-btit">제목</th><th class="mypage-table-bdate">작성일</th><th class="mypage-table-bhit">조회수</th></tr>
             <c:if test="${empty boardlist}">
-            <tr><th colspan="4"> 목록이 없습니다~<br/><a href="#">글쓰러가기</a></th></tr>
+            <tr><th colspan="4"> 목록이 없습니다~<br/><a href="http://localhost:8011/controller/IY_board_flist?page=1">글쓰러가기</a></th></tr>
             </c:if>
             <c:if test="${!empty boardlist}">
               <c:forEach var="board" items="${boardlist}">

@@ -20,13 +20,9 @@
       <ul>
         <li><a href="IY_mypage_reservation">예매내역</a></li>
         <li><a href="IY_mypage_point">포인트 내역</a></li>
+        <li><a href="IY_mypage_board">게시글 내역</a>
         <li><a href="IY_mypage_edit_user">회원정보</a>
-          <ul>
-            <li><a href="IY_mypage_edit_user">- 개인정보 변경</a></li>
-            <li><a href="IY_mypage_edit_theater">- 선호극장 변경</a></li>
-          </ul>
         </li>
-        
       </ul>
     </nav>
   </div>
@@ -54,33 +50,7 @@
     </div>
     
     
-    <div class="mypage-edit-user-info-wrap">
-      <div class="mypage-tit">
-        <p>개인 정보 수정</p>
-      </div>
-      <div class="clear"></div>
-      <div class="mypage-edit-user-info">
-        <form method="post">
-          <div class="mypage-table">
-            <table>
-              <tr><th>이름</th><td>회원이름</td></tr>
-              <tr><th>생년월일</th><td>2020년 8월 18일</td></tr>
-              <tr><th>휴대폰</th><td>
-              	<select>
-              	  <option>010</option>
-              	  <option>011</option>
-              	  <option>019</option>
-              	</select>-<input type="text" size="4"/>-<input type="text" size="4"/></td></tr>
-              <tr><th>이메일</th><td>회원메일주소</td></tr>
-            </table>
-          </div>
-          <div class="mypage-edit-user-ck-pwd-btn">
-            <button>취소</button>
-            <button>등록</button>
-          </div>
-        </form>
-      </div>
-    </div>
+  
     </div>
   
     

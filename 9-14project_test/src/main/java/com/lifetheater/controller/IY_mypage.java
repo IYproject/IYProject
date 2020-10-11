@@ -1,8 +1,10 @@
 package com.lifetheater.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -10,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.lifetheater.service.BoardService;
 import com.lifetheater.service.RepService;
+import com.lifetheater.service.UserService;
 import com.lifetheater.vo.FBoardVO;
 import com.lifetheater.vo.UserVO;
 
@@ -24,11 +28,13 @@ public class IY_mypage {
 	private BoardService boardService;
 	@Autowired
 	private RepService repService;
+	@Autowired
+	private UserService userService;
 	
 	
 	
 	@GetMapping("IY_mypage_board")
-	public String mypage_board(Model m,HttpSession session,HttpServletResponse response) throws Exception{
+	public String mypage_board(Model m,HttpSession session,HttpServletRequest request,HttpServletResponse response,@ModelAttribute FBoardVO fBoard) throws Exception{
 		
 		UserVO user = (UserVO)session.getAttribute("login");
 		if(user==null) {
@@ -49,26 +55,59 @@ public class IY_mypage {
 			m.addAttribute("login",user);
 			
 			// 자유 게시글 목록
-			FBoardVO fBoard = new FBoardVO();
 			fBoard.setEmail(userEmail);
 			fBoard.setCondition("fb_email");
 			fBoard.setKeyword(userEmail);
 			fBoard.setStartrow(1);
 			fBoard.setEndrow(3);// endrow need to set limit and calc
-			/*
-			 * fboard.setStartrow((page-1)*10+1);//시작행 번호
-			 * fboard.setEndrow(fboard.getStartrow()+limit-1);//끝행번호
-			 */			
+			
+			int page=1;
+			int limit=5;
+			if(request.getParameter("page")!=null) {
+				page=Integer.parseInt(request.getParameter("page"));
+			}
+			String condition = fBoard.getCondition();
+			String keyword=fBoard.getKeyword();
+			
+			m.addAttribute("condition", condition);
+			m.addAttribute("keyword", keyword);
+			
+			fBoard.setStartrow((page-1)*limit+1);//시작행 번호
+			fBoard.setEndrow(fBoard.getStartrow()+limit-1);//끝행번호
+			
+			int totalCnt = this.boardService.getFTotalCount(fBoard);//총게시물 수
+			
 			List<FBoardVO> list = boardService.getflist(fBoard);
-			//System.out.println("board List size : " + list.size());
+			System.out.println("board List size : " + list.size());
+			List<FBoardVO> flist = new ArrayList<FBoardVO>();
+			
+			int maxPage = (int)((double)totalCnt/limit+0.95);
+			int startPage = (((int)((double)page/limit+limit+0.9))-1)*limit+1;
+			int endPage = maxPage;
+			
+			if(endPage>startPage+limit-1) {
+				endPage = startPage + limit - 1;
+			}
+			
+			for(FBoardVO f : list) {
+				f.setFb_date(f.getFb_date().substring(0,10));
+			}
 			
 			// list set limit under 3
 			m.addAttribute("boardlist",list);
+			m.addAttribute("totalCnt",totalCnt);
+			m.addAttribute("startPage",startPage);
+			m.addAttribute("endPage", endPage);
+			m.addAttribute("maxPage",maxPage);
+			m.addAttribute("page",page);
+			
 			
 		}
 		
 		return "mypage/mypage_board";
-	}
+	}// mypage_board
+	
+	
 	@GetMapping("IY_mypage_edit_user")
 	public String mypage_edit_user() {
 		return "mypage/mypage_edit_user";
@@ -93,10 +132,37 @@ public class IY_mypage {
 	public String mypage_reservation() {
 		return "mypage/mypage_reservation";
 	}
-	@GetMapping("IY_mypage_edit_theater")
-	public String mypage_edit() {
-		return "mypage/mypage-edit-theater";
+
+	/*
+	 * @GetMapping("IY_mypage_edit_theater") public String mypage_edit() { return
+	 * "mypage/mypage-edit-theater"; }
+	 */
+	@GetMapping("info")
+	public String mypage_reservation(Model m,HttpSession session,HttpServletResponse response) throws Exception {
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user==null) {
+			response.setContentType("text/html; charset=UTF-8");
+
+		   PrintWriter out = response.getWriter();
+		   out.println("<script>alert('로그인이 필요한 서비스입니다.');"
+		   		+ "location.href='/controller/IY_login'</script>");
+		   return null;
+		}
+		
+		user = userService.searchUser(user);
+		m.addAttribute("userInfo",user);
+		
+		return "mypage/mypage_info";
 	}
+	
+	@GetMapping("userPwdChangePage")
+	public String mypage_chgPwd() {
+		
+		
+		
+		return "mypage/mypage_edit_pwd";
+	}
+	
 	@GetMapping("IY_mypage")
 	public String mypage(Model m, HttpSession session,HttpServletResponse response) throws Exception {
 
@@ -111,7 +177,6 @@ public class IY_mypage {
 		}
 		
 		String userEmail = user.getEmail();
-		System.out.println("mypage user email : " + userEmail);
 		// membertype -> Normarl이면
 		if(user.getMembertype()=='1') {
 			// 예매매내역
@@ -132,6 +197,11 @@ public class IY_mypage {
 			 */			
 			List<FBoardVO> list = boardService.getflist(fBoard);
 			//System.out.println("board List size : " + list.size());
+			
+			for(int i=0; i<list.size(); ++i) {
+				list.get(i).setFb_date(list.get(i).getFb_date().substring(0,10));
+			}
+			
 			
 			// list set limit under 3
 			m.addAttribute("boardlist",list);

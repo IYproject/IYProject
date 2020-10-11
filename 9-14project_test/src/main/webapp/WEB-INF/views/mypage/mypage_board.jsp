@@ -24,12 +24,8 @@
       <ul>
         <li><a href="IY_mypage_reservation">예매내역</a></li>
         <li><a href="IY_mypage_point">포인트 내역</a></li>
-        <li><a href="#">게시글 내역</a>
+        <li><a href="IY_mypage_board">게시글 내역</a>
         <li><a href="IY_mypage_edit_user">회원정보</a>
-          <ul class="mypage-lnb-depth">
-            <li><a href="IY_mypage_edit_user">- 개인정보 변경</a></li>
-            <li><a href="IY_mypage_edit_theater">- 선호극장 변경</a></li>
-          </ul>
         </li>
       </ul>
     </nav>
@@ -58,9 +54,44 @@
             </c:if>
           </table>
         </div>
+        
+        <%-- 페이징 --%>
+        <div class="mypage-board-pagination">
+          <c:if test="${page>1}">
+            <c:if test="${startPage-1==0}">
+              <a href="IY_mypage_board?page=${startPage}">&lt&lt&nbsp;&nbsp;</a>
+            </c:if>
+            <c:if test="${startpage-1>0}">
+              <a href="IY_mypage_board?page=${startpage-1}">&lt&nbsp;&nbsp;</a>
+            </c:if>
+            <a href="IY_mypage_board?page=${page-1}">&lt&nbsp;&nbsp;</a>
+          </c:if>
+          <c:forEach var="p" begin="${startPage}" end="${endPage}" step="1">
+            <c:if test="${f==page}">
+              <a >&nbsp;&nbsp;${p}&nbsp;&nbsp;</a>
+            </c:if>
+            <c:if test="${p!=page}">
+              <a href="IY_mypage_board?page=${p}">&nbsp;&nbsp;${p}&nbsp;&nbsp;</a>
+            </c:if>
+          </c:forEach>
+          
+          
+          <c:if test="${page<maxPage}">
+            <a href="IY_mypage_board?page=${page+1}">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</a>
+            <c:if test="${maxPage>endPage+1}">
+              <a href="IY_mypage_board?page=${endPage+1}">&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</a>
+            </c:if>
+            <c:if test="${maxPage<endPage+1}">
+              <a href="IY_mypage_board?page=${endPage}">&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</a>
+            </c:if>
+          </c:if>  
+        </div>
       </div>
   </div>
 </div>
 
+<div class="clear" ></div>
+
+	<jsp:include page="../../include/footer.jsp" />
 </body>
 </html>

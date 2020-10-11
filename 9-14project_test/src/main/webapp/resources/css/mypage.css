@@ -394,3 +394,9 @@
 {
 	vertical-align: middle;
 }
+
+
+.mypage-board-pagination{
+	text-align: center;
+	padding:20px;
+}
