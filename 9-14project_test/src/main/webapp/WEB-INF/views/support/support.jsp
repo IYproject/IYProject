@@ -11,7 +11,7 @@
 <script>
   $(document).ready(function(){
 	  // add db faq
-	  loadHelpList();
+	  loadHelpList('전체');
 	  $(".cc-block-btn").click(function(){
 		  var curBlockBtnNum = $(".cc-block-btn").index(this);
 		  $(".cc-block ul li").removeClass("on");
@@ -202,10 +202,10 @@
       <div class="clear"></div>
       
       <!-- pagination -->
-      <nav class="faq-pagination">
+      <!-- <nav class="faq-pagination">
         <strong class="faq-page active">1</strong>
         <a href="#">2</a>
-      </nav>
+      </nav> -->
     </div>
     
     <div class="clear"></div>

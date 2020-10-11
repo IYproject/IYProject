@@ -8,9 +8,9 @@ create table tbl_inyeon_user(--회원 정보 테이블
 	reg_date date,--회원 가입 날짜
 	membertype char,--회원 분류 키
 	point int default 0,--회원 총 포인트
-	pref_theater01 varchar2(100), null,-- 선호극장1
-	pref_theater02 varchar2(100), null,-- 선호극장2
-	pref_theater03 varchar2(100), null,-- 선호극장3
+	pref_theater01 varchar2(100) null,-- 선호극장1
+	pref_theater02 varchar2(100) null,-- 선호극장2
+	pref_theater03 varchar2(100) null,-- 선호극장3
 	login_way char not null, --로그인 방식
 	belong varchar2(10) null --소속
 );

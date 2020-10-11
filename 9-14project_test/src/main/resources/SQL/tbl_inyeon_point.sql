@@ -6,3 +6,5 @@ create table tbl_inyeon_point(--포인트 테이블
 	point int default 0,--획득 포인트
 	email varchar2(100)--user테이블 email외래키
 )
+
+alter table tbl_inyeon_point add constraint email foreign key (email) references tbl_inyeon_user(email);
