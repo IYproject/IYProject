@@ -19,5 +19,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lifetheater.vo.BasicTheaterVO" alias="tdvo" />
 		<typeAlias type="com.lifetheater.vo.BasicTheaterListVO" alias="tdlvo" />
 		<typeAlias type="com.lifetheater.vo.TicketingInfoVO" alias="tInfo" />
+		<typeAlias type="com.lifetheater.vo.SupportHelpVO" alias="helpvo"/>
 	</typeAliases>
 </configuration>

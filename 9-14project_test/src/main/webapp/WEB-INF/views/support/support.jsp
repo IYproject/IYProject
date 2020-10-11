@@ -10,44 +10,75 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
+	  // add db faq
+	  loadHelpList();
 	  $(".cc-block-btn").click(function(){
 		  var curBlockBtnNum = $(".cc-block-btn").index(this);
 		  $(".cc-block ul li").removeClass("on");
 		  $(".cc-block ul li").eq(curBlockBtnNum).addClass('on');
 		  $('#faq-list-title').text($(this).data('kind'));
 		  // load support faq db data 
+		  loadHelpList($(this).data('kind'));
 	  }) 
 	  
-	  // when start page, answer hide
-	  $(".faq-a").hide();
-	  $(".faq-q").removeClass("on");
-	  var preQnANum = -1;
-	  $(".faq-q").click(function(){
-		 var curQnANum = $(".faq-q").index(this);
-		 if(curQnANum!=preQnANum){
-			 $(".faq-a").stop(true,true).slideUp(400);
-			 $(".faq-q").removeClass('on');
-			 preQnANum = curQnANum;
-			 $(".faq-q").eq(preQnANum).addClass('on');
-			 $(".faq-a").eq(preQnANum).stop(true,true).slideDown(400);
-		 }else{
-			 $(".faq-a").eq(curQnANum).stop(true,true).slideUp(400);
-			 $(".faq-q").eq(curQnANum).removeClass('on');
-			 preQnANum=-1;
-		 }
-	  })
 	  
-	  loadHelpList();
+	  
+	
   });
 
   
-  function loadHelpList(){
+  function loadHelpList(kind){
 	  $.ajax({
-		  url:"${pageContext.request.contextPath}/support_help_list",
+		  url:"${pageContext.request.contextPath}/support_help_list?condition=title&keyword="+kind,
 		  type:'GET',
-		  
+		  dataType:'json',
 		  success:function(data){
+			  var listSize=0;
 			  console.log(data);
+			  var addstr="<ul>";
+			  $.each(data,function(key,val){
+				  addstr+="<li>"
+		        	+"<div class='faq-q'>"
+		        	 +' <a>'
+		        	  +'  <p class="faq-tit">'
+		        	     
+		        	     +'<span class="font-green">'
+		        	  +'['+val.field+']'
+		        	    +'</span></p><p class="faq-txt"><span>'
+		        	     +val.quest
+		        	    +'</span></p></a></div><div class="faq-a"><p class="faq-a-cont">'
+		        	    <!-- A. -->
+		        	   +' <span>'
+		        	      	+val.answer
+		        	    +'</span></p></div></li>';
+								  
+				  ++listSize;
+			  })
+			  $("#faq-list-cnt").text(listSize+"건");
+			  
+			  $("#faq-list").html(addstr);
+			  
+			// when start page, answer hide
+			  $(".faq-a").hide();
+			  $(".faq-q").removeClass("on");
+			  
+			  
+				// when question clicks,  
+			  var preQnANum = -1;
+			  $(".faq-q").click(function(){
+				 var curQnANum = $(".faq-q").index(this);
+				 if(curQnANum!=preQnANum){
+					 $(".faq-a").stop(true,true).slideUp(400);
+					 $(".faq-q").removeClass('on');
+					 preQnANum = curQnANum;
+					 $(".faq-q").eq(preQnANum).addClass('on');
+					 $(".faq-a").eq(preQnANum).stop(true,true).slideDown(400);
+				 }else{
+					 $(".faq-a").eq(curQnANum).stop(true,true).slideUp(400);
+					 $(".faq-q").eq(curQnANum).removeClass('on');
+					 preQnANum=-1;
+				 }
+			  })
 		  },
 		  error:function(xhr,status,error){
 			  console.log('error  '+error);
@@ -84,7 +115,7 @@
       	자주 묻는 질문
     </h2>
     <!-- 검색 -->
-    <div class="input-search-area mb30">
+    <!-- <div class="input-search-area mb30">
       <div class="input-area">
         <label class="search_label">빠른 검색</label>
         <div class="board-search w460px">
@@ -94,7 +125,7 @@
       </div>
       
       <div class="clear"></div>
-    </div>
+    </div> -->
     
     <!-- 질문 분류 -->
     <div class="cc-block mb30">

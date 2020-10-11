@@ -15,8 +15,8 @@ public class SupportDAOImpl implements SupportDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<SupportHelpVO> getHelpList() {
-		return sqlSession.selectList("support_help_list");
+	public List<SupportHelpVO> getHelpList(SupportHelpVO shvo) {
+		return sqlSession.selectList("support_help_list",shvo);
 	}
 
 }

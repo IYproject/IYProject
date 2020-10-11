@@ -6,6 +6,6 @@ import com.lifetheater.vo.SupportHelpVO;
 
 public interface SupportService {
 
-	List<SupportHelpVO> getHelpList();
+	List<SupportHelpVO> getHelpList(SupportHelpVO shvo);
 
 }

@@ -15,7 +15,7 @@ public class SupportServiceImpl implements SupportService {
 	SupportDAO supportDAO;
 
 	@Override
-	public List<SupportHelpVO> getHelpList() {
-		return supportDAO.getHelpList();
+	public List<SupportHelpVO> getHelpList(SupportHelpVO shvo) {
+		return supportDAO.getHelpList(shvo);
 	}
 }

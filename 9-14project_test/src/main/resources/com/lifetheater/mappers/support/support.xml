@@ -9,6 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="support_help_list" resultType="helpvo">
 		 select * from tbl_support_help
+		 <where>
+		   <if test="condition==''">
+		   </if>
+		   <if test="condition=='title'">
+		     field = #{keyword}
+		   </if>
+		   
+		 </where>
 	</select>
 
 </mapper>

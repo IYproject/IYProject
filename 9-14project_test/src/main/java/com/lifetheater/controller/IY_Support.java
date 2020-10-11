@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifetheater.service.SupportService;
@@ -29,11 +30,19 @@ public class IY_Support {
 	
 	
 	@RequestMapping("support_help_list")
-	public List<SupportHelpVO> getSupportHelpList(HttpServletRequest request) throws Exception {
+	@ResponseBody
+	public List<SupportHelpVO> getSupportHelpList(HttpServletRequest request,@RequestParam("condition")String condi,@RequestParam("keyword")String keyword) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
+		SupportHelpVO shvo = new SupportHelpVO();
+		System.out.println("condition : " + condi+"  keyword : " + keyword);
+		if(!keyword.equals("전체")) {
+			shvo.setCondition(condi);
+			
+		}
+		shvo.setKeyword(keyword);
 		// load support db data
-		List<SupportHelpVO> list = supportService.getHelpList();
+		List<SupportHelpVO> list = supportService.getHelpList(shvo);
 		
 		System.out.println("support list size : "+ list.size());
 		
