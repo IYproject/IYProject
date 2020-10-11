@@ -102,7 +102,7 @@
       </p>
       <ul>
         <li><a href="IY_board_nlist">공지사항</a></li>
-        <li><a href="IY_mypage">1:1 문의</a></li>
+        <li><a href="IY_mypage_inquiry">1:1 문의</a></li>
         <li class="on"><a href="support">자주 묻는 질문</a></li>
       </ul>
     </nav>

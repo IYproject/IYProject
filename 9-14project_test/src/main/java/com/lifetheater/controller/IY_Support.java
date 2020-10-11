@@ -27,7 +27,11 @@ public class IY_Support {
 		return "support/support";
 	}//support()
 	
-	
+	@GetMapping("IY_mypage_inquiry")
+	public String Support_inquiry() {
+		
+		return "support/support_inquiry";
+	}
 	
 	@RequestMapping("support_help_list")
 	@ResponseBody
@@ -48,5 +52,5 @@ public class IY_Support {
 		
 		return list;
 		
-	}
+	}// getSupportHElpList()
 }
