@@ -7,8 +7,7 @@
 <title></title>
 <link rel="stylesheet" href="./resources/css/basictheaterwrite.css">
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css"
 	rel="stylesheet">
@@ -21,22 +20,25 @@
 </head>
 <body>
 	<jsp:include page="../../include/header.jsp" />
+	
+	<form id="basic_theater_form" name="basic_theater_form" action="/IY_theater_write_ok" onsubmit="return false;" method="post">
+	
 	<div class="info_wrap" id="info_submit">
-		<!--큰 제목-->
-		<div class="detail_title_box">
-			<p>
-				<span>제목</span> <input type="text" id="detail_title">
-			</p>
-			<br>
-		</div>
-		<p class="running_time">
-			<span>상영기간 </span><br>
-			<input type="text" id="detail_dayto"> <br> <span>YYYY.MM.DD~YYYY.MM.DD로
-				입력해주세요</span>
-		</p>
-
-		<br>
-	</div>
+				<!--큰 제목-->
+			<div class="detail_title_box">
+				<p>
+					<span>제목</span><input type="text" id="td_title" name="td_title">
+				</p>
+				<br>
+				</div>
+					<p class="running_time">
+						<span>상영기간 </span><br><input type="text" id="td_viewdays" name="td_viewdays">
+						<br>
+						<span>YYYY.MM.DD~YYYY.MM.DD로 입력해주세요</span>
+					</p>
+					
+				<br>
+				</div>
 
 
 	<div class="detail_wrap_box">
@@ -44,8 +46,13 @@
 			<div class="detail_top_view">
 				<!--상단-->
 				<!-- poster upload -->
-				<br> <input id="file_upload_dp_poster" type="file" multiple />
-				<br> <br>
+				<br>
+				
+					<input id="file_upload" type="file"
+						multiple/> 
+				
+						<br>
+					<br>
 
 
 
@@ -53,55 +60,59 @@
 					<!--상품정보-->
 					<div class="detail_top_right_product">
 						<!--등급, 관람시간, 출연, 가격, 혜택-->
-						<div class="theaterD_agegradeBox">
-							등급 <select id="theaterD_age" name="agegrade">
-								<option value="theater_age_f" selected="selected">전체 이용 관람가</option>
-								<option value="theater_age_12">12세 이용 관람가</option>
-								<option value="theater_age_15">15세 이용 관람가</option>
-								<option value="theater_age_19">19세 이용 관람가</option>
-							</select>
-						</div>
-						<br>
-						<div class="basictheater_locationBox"
-							id="basictheater_locationBox">
-							지역 <select id="basictheater_location" name="agegrade">
-								<option id="basictheater_seoul" value="basictheater_seoul" selected="selected">서울특별시</option>
-								<option id="basictheater_busan" value="basictheater_busan">부산광역시</option>
-								<option id="basictheater_deagu" value="basictheater_deagu">대구광역시</option>
-								<option id="basictheater_incheon" value="basictheater_incheon">인천광역시</option>
-								<option id="basictheater_gwangju" value="basictheater_gwangju">광주광역시</option>
-								<option id="basictheater_daejeon" value="basictheater_daejeon">대전광역시</option>
-								<option id="basictheater_ulsan" value="basictheater_ulsan">울산광역시</option>
-								<option id="basictheater_sejong" value="basictheater_sejong">세종특별자치시</option>
-								<option id="basictheater_Gyeonggi" value="basictheater_Gyeonggi">경기도</option>
-								<option id="basictheater_gangwon" value="basictheater_gangwon">강원도</option>
-								<option id="basictheater_chungcheong-bukdo" value="basictheater_chungcheong-bukdo">충청북도</option>
-								<option id="basictheater_chungcheong-namdo" value="basictheater_chungcheong-namdo">충청남도</option>
-								<option id="basictheater_jeonlla-bukdo" value="basictheater_jeonlla-bukdo">전라북도</option>
-								<option id="basictheater_jeonlla-namdo" value="basictheater_jeonlla-namdo">전라남도</option>
-								<option id="basictheater_gyeongsang-bukdo" value="basictheater_gyeongsang-bukdo">경상북도</option>
-								<option id="basictheater_gyeongsang-namdo" value="basictheater_gyeongsang-namdo">경상남도</option>
-								<option id="basictheater_jeju" value="basictheater_jeju">제주특별자치도</option>
-							</select>
-						</div>
-						<br> <br>
-						<p>
-							관람시간&nbsp;&nbsp;&nbsp;<input type="text" id="detail_runtime">
-						</p>
-						<br> <br>
-						<p>
-							출연&nbsp;&nbsp;&nbsp;<input type="text" id="detail_actor">
-						</p>
-						<br> <br>
+							<div class="theater_agegradeBox">
+								등급 <select id="td_agegrade" name="td_agegrade">
+									<option value="전체 이용 관람가">전체 이용 관람가</option>
+									<option value="12세 이용 관람가">12세 이용 관람가</option>
+									<option value="15세 이용 관람가">15세 이용 관람가</option>
+									<option value="19세 이용 관람가">19세 이용 관람가</option>
+								</select>
+							</div>
+							<br>
+							<div class="td_location_box" id="td_location_box">
+								지역 <select id="td_location" name="td_location">
+									<option value="서울특별시">서울특별시</option>
+									<option value="부산광역시">부산광역시</option>
+									<option value="대구광역시">대구광역시</option>
+									<option value="인천광역시">인천광역시</option>
+									<option value="광주광역시">광주광역시</option>
+									<option value="대전광역시">대전광역시</option>
+									<option value="울산광역시">울산광역시</option>
+									<option value="세종특별자치시">세종특별자치시</option>
+									<option value="경기도">경기도</option>
+									<option value="강원도">강원도</option>
+									<option value="충청북도">충청북도</option>
+									<option value="충청남도">충청남도</option>
+									<option value="전라북도">전라북도</option>
+									<option value="전라남도">전라남도</option>
+									<option value="경상북도">경상북도</option>
+									<option value="경상남도">경상남도</option>
+									<option value="제주특별자치도">제주특별자치도</option>
+								</select>
+							</div>
+							<br>
+							<br>
+							<p>관람시간&nbsp;&nbsp;&nbsp;<input type="text" id="td_ticketinginfo"></p>
+							<br>
+							<br>
+							<p>출연&nbsp;&nbsp;&nbsp;<input type="text" id="td_actor"></p>
+							<br>
+							<br>
 						<div>
 							<p id="notice_tag">
-								<br> <span>공연시간 안내</span> <br /> <br />
-								<textarea id="theater_notice" rows="10px" cols="95px"></textarea>
+								<br>
+								<span>공연시간 안내</span>
+								<br />
+								<br />
+								<textarea id="td_tinfo" rows="10px" cols="95px"></textarea>
 							</p>
 						</div>
 
-						<div id="seat_price_in" class="seat_price_in"></div>
-						<br> <br>
+							<div id="seat_price_in" class="seat_price_in">
+								
+							</div>
+								<br>
+								<br>
 					</div>
 					<!--포인트-->
 					<div class="detail_top_right_down">
@@ -109,22 +120,25 @@
 						<br>
 						<div id="roundDayBox">
 							<span>티켓 정보 입력</span>&nbsp;
-							<button onclick="ticketPlus();">+</button>
-							<br>
-							<br> 공연날짜 : <input type='date' id="runtimeDate1" name='userBirthday'
-								value='2020-03-30' /><br /> <span id="roundday"> <br>
-
-								시작시간 : <input type="time" name="starttime" id="starttime1"
-								class="playtime1" size="7" /> 종료시간: <input type="time"
-								name="endtime" id="endtime1" class="playtime1" size="7" />
-
-								<p>
-									좌석&nbsp;&nbsp;: <input id="seat_select1" class="seat_select1"
-										type="text" size="7" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격&nbsp;:&nbsp;
+							<!-- <button onclick="ticketPlus();">+</button> -->
+							<br><br>
+								공연날짜 : <input type='date' id="date" /><br />
+								<span id="roundday">
+								<br>
+								
+								시작시간 :
+								<input type="time" name="starttime" id="starttime" class="playtime1" size="7"/>
+								종료시간:
+								<input type="time" name="endtime" id="endtime" class="playtime1" size="7"/>
+								
+								<p>좌석&nbsp;&nbsp;:
+									<input id="seat_select1" class="seat_select1" type="text"
+										size="7" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격&nbsp;:&nbsp;
 									<input id="seat_price1" class="seat_price1" type="text"
 										size="7" />&nbsp;원
 								</p>
-							</span> <br>
+							</span>
+							<br>
 						</div>
 					</div>
 				</div>
@@ -132,23 +146,23 @@
 		</div>
 	</div>
 
-	<div class="detail_body_view">
-		<div class="detail_body_note">
-			<textarea id="summernote" class="summernote"></textarea>
+		<div class="detail_body_view">
+			<div class="detail_body_note">
+				<textarea id="td_detailposter" class="td_detailposter"></textarea>
+			</div>
+			<div id="detail_btn">
+				<button id="detail_btn_list" onclick="location='IY_theater_list'">목록</button>
+				<button type='submit' id="detail_btn_submitbtn"	onclick="check()">확인</button>
+			</div>
 		</div>
-		<div id="detail_btn">
-			<button id="detail_btn_list" onclick="location='IY_theater_list'">목록</button>
-			<button type='button' id="detail_btn_submitbtn" onclick="check()">확인</button>
-		</div>
-	</div>
-
+</form>
 
 	<!-- summernote script start -->
 	<script>
 	var a = 1;
 	var url;
 $(document).ready(function(){
-	$('#summernote').summernote({
+	$('#td_detailposter').summernote({
 		width:1200,
 		height:500,
 		callbacks: {	//여기 부분이 이미지를 첨부하는 부분
@@ -169,6 +183,8 @@ $(document).ready(function(){
 			processData : false,
 			success : function(data) {
 				console.log(data);
+				alert(data.url);
+            	//항상 업로드된 파일의 url이 있어야 한다.
 				$(editor).summernote('insertImage', data.url);
 			}
 		});
@@ -186,6 +202,7 @@ function ticketPlus(){
 		htmls+="<p>좌석&nbsp;&nbsp;: <input id='seat_select"+a+"' class='seat_select1'type='text' size='7' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격&nbsp;:&nbsp;";
 		htmls+="<input id='seat_price"+a+"' class='seat_price1' type='text' size='7' />&nbsp;원 </p> </span> <br>";
 	$("#roundDayBox").append(htmls);
+	alert(a);
 	}
 }
 
@@ -196,38 +213,38 @@ function check(){ //연극 기본정보를 DB로 넘긴후 티켓팅 재기함�
 
 	
 	
-	if($.trim($('#detail_title').val())==""){ //입력 경고창
+	if($.trim($('#td_title').val())==""){ //입력 경고창
 		 alert("제목을 입력하세요!");
-		 $("#detail_title").val('').focus();
+		 $("#td_title").val('').focus();
 		return false;
 		 }
-	else if($.trim($('#detail_dayto').val())==""){
+	else if($.trim($('#td_viewdays').val())==""){
 		 alert("상영기간을 입력하세요!");
-		 $("#detail_dayto").val('').focus();
+		 $("#td_viewdays").val('').focus();
 		return false;
 		 }
-	else if($.trim($('#detail_runtime').val())==""){
+	else if($.trim($('#td_ticketinginfo').val())==""){
 		 alert("관람시간을 입력하세요!");
-		 $("#detail_runtime").val('').focus();
+		 $("#td_ticketinginfo").val('').focus();
 		return false;
 		 }
-	else if($.trim($('#detail_actor').val())==""){
+	else if($.trim($('#td_agegrade').val())==""){
 		 alert("출연진 정보를 입력하세요!");
-		 $("#detail_actor").val('').focus();
+		 $("#td_agegrade").val('').focus();
 		return false;
 		 }
-	else if($.trim($('#theater_notice').val())==""){
+	else if($.trim($('#td_tinfo').val())==""){
 		 alert("공연시간안내을 입력하세요!");
-		 $("#theater_notice").val('').focus();
+		 $("#td_tinfo").val('').focus();
 		return false;
 		 }
-	else if($.trim($('#summernote').val())==""){
+	else if($.trim($('#td_detailposter').val())==""){
 		 alert("내용 및 포스터를 입력하세요!");
-		 $("#summernote").val('').focus();
+		 $("#td_detailposter").val('').focus();
 		return false;
 		 } else{
-			    for(var i=0; i<$('#file_upload_dp_poster')[0].files.length; i++){
-			        formData.append('file', $('#file_upload_dp_poster')[0].files[i]);
+			    for(var i=0; i<$('#file_upload')[0].files.length; i++){
+			        formData.append('file', $('#file_upload')[0].files[i]);
 			        console.log('실행');
 			    }
 			    $.ajax({
@@ -246,16 +263,15 @@ function check(){ //연극 기본정보를 DB로 넘긴후 티켓팅 재기함�
 }
 
 function theaterInfo(url){
-	 var D_age = $("#theaterD_age option:selected").text()
 	const boardInfo={
-			 td_title:$("#detail_title").val(),
-			 td_viewdays:$("#detail_dayto").val(),
-			 td_agegrade:D_age,
-			 td_actor:$("#detail_actor").val(),
-			 td_tinfo:$("#theater_notice").val(),
-			 td_detailposter:$("#summernote").val(),
-			 td_ticketinginfo:$("#detail_runtime").val(),
-			 td_location:$("#basictheater_location option:selected").text(),
+			 td_title:$("#td_title").val(),
+			 td_viewdays:$("#td_viewdays").val(),
+			 td_agegrade:$("#td_agegrade").val(),
+			 td_actor:$("#td_actor").val(),
+			 td_tinfo:$("#td_tinfo").val(),
+			 td_detailposter:$("#td_detailposter").val(),
+			 td_ticketinginfo:$("#td_ticketinginfo").val(),
+			 td_location:$("#td_location").val(),
 			 td_mainposter:url,
    		email:"${login.email}"
    	};
@@ -268,6 +284,7 @@ function theaterInfo(url){
         processData: false,
         contentType: false,
         success: function (data) {
+            alert("basictheater등록 완료");
             ticketInfoInsert(data.td_no);
             console.log(data);
         }
@@ -275,6 +292,7 @@ function theaterInfo(url){
 	
 }
 function ticketInfoInsert(td_no){
+	alert(a);
 	if(a>=1){
 		var runtimeDate = $("#runtimeDate"+a).val();
 		var starttime = $("#starttime"+a).val();
@@ -305,18 +323,19 @@ function ticketInfoInsert(td_no){
 	        processData: false,
 	        contentType: false,
 	        success: function () {
+	            alert("티켓팅정보"+a+" 완료");
 	            a = a-1;
 	            ticketInfoInsert(td_no);
 	        }
 	    });
 		
 	}else{
-		alert('연극 등록 완료');
-		location.href="IY_theater_list";
+		alert('티켓팅 전부 등록 완료');
+	location.href="IY_theater_list";
 	}
 }
 
-
+document.getElementById('date').value= new Date().toISOString().slice(0, 10);
 
 </script>
 	<jsp:include page="../../include/footer.jsp" />

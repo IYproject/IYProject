@@ -1,128 +1,128 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
-<link rel="stylesheet" href="./resources/css/detailPage.css">
-<script src="./resources/js/jquery.js"></script>
+<link rel="stylesheet" href="./resources/css/basictheaterwrite.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<script src="resources/js/summernote-ko-KR.js">
+	
+</script>
+
 </head>
+<body>
 	<jsp:include page="../../include/header.jsp" />
-<div class="detail_title_wrap">
-	<div class="detail_title_box">
-		<!--큰 제목-->
-		<p class="detail_title_name">연극종류[연극이름]</p>
+	
+	<form id="basic_theater_form" name="basic_theater_form" action="/IY_theater_write_ok" onsubmit="return false;" method="post">
+	
+	<div class="info_wrap" id="info_submit">
+				<!--큰 제목-->
+			<div class="detail_title_box">
+				<p>
+					<span>제목</span>${tdvo.td_title}
+				</p>
+				<br>
+				</div>
+					<p class="running_time">
+						<span>상영기간 </span><br><div id="td_viewdays">${tdvo.td_viewdays}</div> 
+						<br>
+						<span>YYYY.MM.DD~YYYY.MM.DD로 입력해주세요</span>
+					</p>
+					
+				<br>
+				</div>
 
-
-		<div>
-			<p>
-				<span class="detail_title_days">YYYY.MM.DD ~ YYYY.MM.DD</span>
-			</p>
-		</div>
-	</div>
-	</div>
 
 	<div class="detail_wrap_box">
 		<div class="detail_wrap_content">
 			<div class="detail_top_view">
 				<!--상단-->
-				<div class="detail_image_p">
-					<!--포스터-->
-					<img class="detail_images_box" src="./resources/img/image01.jpeg">
-				</div>
+				<!-- poster upload -->
+				<br>
+				
+					<input id="file_upload" type="file"
+						multiple/> 
+				
+						<br>
+					<br>
+
+
 
 				<div class="detail_top_right">
 					<!--상품정보-->
 					<div class="detail_top_right_product">
 						<!--등급, 관람시간, 출연, 가격, 혜택-->
-						<dl>
-							<dt>등급</dt>
-							<dd>&nbsp;만 7세 이상 관람가</dd>
-							<dt>관람시간</dt>
-							<dd>&nbsp;100분</dd>
-							<dt>출연</dt>
-							<dd>
-								&nbsp;<a href="#"
-									target="_blank" class="rn-product-peole">김태경</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">권순형</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">신아라</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">곽예헌</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">심유라</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">박희연</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">전형준</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">박성원</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">신승철</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">김지욱</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">문종영</a><a
-									href="#" target="_blank"
-									class="rn-product-peole">김범수</a>
-							</dd>
-							<dt id="dtPrice">가격</dt>
-							<dd id="divPrice" class="rn-product-price">
-								<ul
-									class="rn-product-price1 scroll-color mCustomScrollbar _mCS_3 mCS_no_scrollbar">
-									<div id="mCSB_3"
-										class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside"
-										tabindex="0" style="max-height: none;">
-										<div id="mCSB_3_container"
-											class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y"
-											style="position: relative; top: 0; left: 0;" dir="ltr">
-											<li>전석 <span class="rn-red">35,000</span>원
-											</li>
-										</div>
-										<div id="mCSB_3_scrollbar_vertical"
-											class="mCSB_scrollTools mCSB_3_scrollbar mCS-light mCSB_scrollTools_vertical"
-											style="display: none;">
-											<div class="mCSB_draggerContainer">
-												<div id="mCSB_3_dragger_vertical" class="mCSB_dragger"
-													style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
-													<div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-												</div>
-												<div class="mCSB_draggerRail"></div>
-											</div>
-										</div>
-									</div>
-								</ul>
-							</dd>
-						</dl>
+							<div class="theater_agegradeBox">
+								등급 <div class="theater_selectgrade">${$tdvo.td_agegrade}</div>
+							</div>
+							<br>
+							<div class="td_location_box" id="td_location_box">
+								지역 <div class="select_location">${tdvo.td_location}</div>
+							</div>
+							<br>
+							<br>
+							<p>관람시간&nbsp;&nbsp;&nbsp;<input type="text" id="td_runtime"></p>
+							<br>
+							<br>
+							<p>출연&nbsp;&nbsp;&nbsp;<input type="text" id="td_actor"></p>
+							<br>
+							<br>
+						<div>
+							<p id="notice_tag">
+								<br>
+								<span>공연시간 안내</span>
+								<br />
+								<br />
+								<textarea id="td_tinfo" rows="10px" cols="95px"></textarea>
+							</p>
+						</div>
+
+							<div id="seat_price_in" class="seat_price_in">
+								
+							</div>
+								<br>
+								<br>
 					</div>
 					<!--포인트-->
-
 					<div class="detail_top_right_down">
 						<!--공연시간안내, 배송정보-->
-						<dl>
-							<dt>공연시간 안내</dt>
-							<br/><br/>
-							
-							<dd>
-								2018년 03월 10일(토) ~ OPEN RUN <br>토,일 오후 1시 / 평일 공연없음 <br>*
-								8월 공연없음 <br>* 9월 30일(수) 공연없음
-							</dd>
-							<dt>배송정보</dt>
-							<dd>현장 수령만 가능</dd>
-						</dl>
+						<br>
+						<div id="roundDayBox">
+							<span>티켓 정보 입력</span>&nbsp;
+							<!-- <button onclick="ticketPlus();">+</button> -->
+							<br><br>
+								공연날짜 : <div class="td_ticketinginfo">${tdvo.td_ticketinginfo}</div>
+								<br>
+								
+								공연시간 :
+								<div name="starttime" id="starttime">${tdvo.td_runtime}</div>
+								
+								</p>
+							</span>
+							<br>
+						</div>
 					</div>
 				</div>
 			</div>
-			
-			
 		</div>
-		
 	</div>
-	
-		<jsp:include page="../../include/footer.jsp" />
-<body>
+
+		<div class="detail_body_view">
+			<div class="detail_body_note">
+			${tdvo.td_detailposter}
+			</div>
+		</div>
+</form>
+
+
+	<jsp:include page="../../include/footer.jsp" />
 </body>
 </html>

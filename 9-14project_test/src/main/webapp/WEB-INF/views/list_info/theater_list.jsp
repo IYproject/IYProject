@@ -33,30 +33,24 @@
 		<c:if test="${login.membertype eq '2'.charAt(0)}"> <!-- 등급이 2일때 보임 -->
 		<button type="button" class="btn_write" onclick="location='IY_theater_write'">작성</button>
 		</c:if>
-	<!-- 	<button type="button" class="btn_update" onclick="location='#'">수정</button>
-		<button type="button" class="btn_delete" onclick="location='IY_listLoad_admin'">이전</button> -->
 		 </div>
 		 
 		 
-	<!-- 	<div id="list_tot_cntBox">
-			<span class="list_tot_cntname">현재 예매 가능한 공연은 </span> <span
-				id="list_tot_cnt">0</span> <span class="list_tot_cntname">개
-				입니다</span>
-		</div> -->
 
 		<div class="list_img_lazyload">
-			<!-- img box -->
 			<div class="list_wrap_infoBox">
 			<a style="cursor: pointer;" onclick="location='IY_theater_view'" title="연극 [0]"> <!-- img box click -->
-				<div class="list_box_wrap">
+				<div class="list_box_wrap" id="list_box_wrap">
 
-					<img class="lazyload" alt="연극 [name]"
-						src="./resources/img/image01.jpeg" style="">
+				<c:forEach var="td" items="${tdlist}">
+					<img class="lazyload" 
+						src="${td.td_mainposter}" />
 					<div class="list_tit_txt">
-						<p class="list-b-tit1">연극 [name]</p>
-						<p class="list-b-tit2">YYYY.MM.DD ~ YYYY.MM.DD</p>
-						<p class="list-b-tit2">location</p>
+						<p class="list-b-tit1">${td.td_title}</p>
+						<p class="list-b-tit2">${td.td_viewdays}</p>
+						<p class="list-b-tit2">${td.td_location}</p>
 					</div>
+					</c:forEach>
 				</div>
 			</a>
 			</div>
@@ -92,26 +86,6 @@
 	</div>
 		<jsp:include page="../../include/footer.jsp" />
 </body>
-<script>
-	slidcheck = 1;
-	function slidOnOff() {
-		if (slidcheck == 1) {
-			//슬라이드 open 실행
-			$("#li_tit2_updown").html('∧');
-			$('#list_tit_slid_submenu').css({
-				'display' : 'inline-block'
-			});
-			slidcheck = 0;
-		} else if (slidcheck == 0) {
-			//슬라이드 close 실행
-			$("#li_tit2_updown").html('∨');
-			$('#list_tit_slid_submenu').css({
-				'display' : 'none'
-			});
-			slidcheck = 1;
-		}
-	}
-</script>
 </html>
 
 
