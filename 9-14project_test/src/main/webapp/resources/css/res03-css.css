@@ -58,8 +58,8 @@ a {
 }
 
 .body-wrap{
-	margin-top: 10px;
-	margin-left:200px;
+	margin-top: 60px;
+	margin-left:250px;
 	margin-right:20px;
 	margin-bottom:20px;
 	position:relative;
@@ -71,9 +71,10 @@ a {
 .body-wrap .body-wrap-block1{
 	width:400px;
 	height:240px;
-	
+	margin-left:50px;
 	top:0px;
 	left:10px;
+	margin-bottom:20px;
 }
 
 #mes{
@@ -91,6 +92,11 @@ a {
 	font-size:23px;
 }
 
+#theaterdetail1{
+	style:bold;
+	font-size:23px;
+}
+
 select{
 	 font-family: inherit;
 	width:100px;
@@ -100,7 +106,9 @@ select{
 	padding-top:10px;
 }
 
-
+#td_ticketinginfo01{
+	margin-bottom:150px;
+}
 
 .body-wrap-block3-a1{
 	padding-top:10px;

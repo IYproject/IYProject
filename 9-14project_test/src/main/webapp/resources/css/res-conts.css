@@ -93,9 +93,9 @@ p{
 .sidolist{
 	position:absolute;
 	left: 20px;
-	width:50%;
-	font-size:5px;
-	font-size:10px;
+	width:80%;
+	
+	font-size:30px;
 }
 
 .gugunlist{
@@ -109,13 +109,74 @@ p{
 .resbtn{
 	min-height:28px;
 	display:block;
-	width:70%;
+	width:90%;
 	background-color:white;
 	border:none;
-	
 	cursor:pointer;
 	
 }
+
+
+.resbtn02{
+	min-height:28px;
+	display:block;
+	width:70%;
+	background-color:white;
+	border:none;
+	font-size:10px;
+	cursor:pointer;
+}
+
+
+.resbtn03{
+	min-height:28px;
+	display:block;
+	width:70%;
+	background-color:white;
+	border:none;
+	font-size:10px;
+	cursor:pointer;
+}
+
+.resbtn04{
+	min-height:28px;
+	display:block;
+	width:70%;
+	background-color:white;
+	border:none;
+	font-size:10px;
+	cursor:pointer;
+}
+
+.span02{
+	display:none;
+}
+
+.span03{
+	display:none;
+}
+
+.span04{
+	display:none;
+}
+
+
+
+
+
+#calendarForm{
+	min-height:28px;
+	display:block;
+	width:70%;
+	background-color:white;
+	border:none;
+	font-size:10px;
+	cursor:pointer;
+	
+}
+
+*/
+
 
 .resbtn:hover{
 background:gray;	

@@ -273,12 +273,12 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 			return entity;
 		}
 			
-		@PostMapping("IY_getGugun")
-		public List<GugunVO> getGugun(@RequestBody int sido_code, Model m){
-			List<GugunVO> glist = this.gugunService.getGugun(sido_code);
-			m.addAttribute("glist",glist);
-			return glist;
-		}
+	/*
+	 * @PostMapping("IY_getGugun") public List<GugunVO> getGugun(@RequestBody int
+	 * sido_code, Model m){ List<GugunVO> glist =
+	 * this.gugunService.getGugun(sido_code); m.addAttribute("glist",glist); return
+	 * glist; }
+	 */
 		
 		@PostMapping("/fbdelete")
 		public void fbdelete(@RequestBody FBoardVO fboard) {

@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BasicTheaterVO {
-	private String td_no;
+	private int td_no;
 	private String email;
 	private String td_title;
 	private String td_viewdays;
@@ -16,7 +16,7 @@ public class BasicTheaterVO {
 	private String td_mainposter;
 	private String td_detailposter;
 	private int td_tiketingdate;
-	private String td_tiketinginfo;
+	private String td_ticketinginfo;
 	private char td_check;
 	private String td_signUp_date;
 	private String td_location;

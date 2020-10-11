@@ -18,8 +18,8 @@
 					</span>
 				</button>
 				<div id="list_tit_slid_submenu" style="display: none;">
-					<span id="li_tit2_select" style="display: inline;"> <a
-						class="li_title_selecter" style="cursor: pointer;">전체보기</a><br>
+					<span id="li_tit2_select" style="display: inline;"> 
+					<a class="li_title_selecter" style="cursor: pointer;">전체보기</a><br>
 						<a class="li_title_selecter" style="cursor: pointer;">대학로</a><br>
 						<a class="li_title_selecter" style="cursor: pointer;">기타 지역</a>
 					</span>
@@ -33,7 +33,7 @@
 				입니다</span>
 		</div>
 
-		<div class="list_img_lazyload">
+		<div class="list_img_lazyload">	
 			<!-- img box -->
 			<div class="list_wrap_infoBox">
 			<a style="cursor: pointer;" onclick="location='IY_detailPage'" title="연극 [0]"> <!-- img box click -->

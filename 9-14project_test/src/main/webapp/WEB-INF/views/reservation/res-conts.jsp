@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예매내용</title>
+
 <link rel="stylesheet" type="text/css" href="./resources/css/res11.css" />
 <link rel="stylesheet" type="text/css"
 	href="./resources/css/res-conts.css" />
@@ -16,6 +17,7 @@
 
 </head>
 <body>
+<jsp:include page="../../include/header.jsp"/>
 
 	<div class="quick-reservation-title">
 		<h1>빈칸빈칸</h1>
@@ -37,86 +39,64 @@
 						<%--sidolist --%>
 						<div class=sidolist>
 							<ul>
-								<li><button class="resbtn" id="11" onclick="sido_codebtn();">
+									<li><button class="resbtn" id="1">
+										<span class="text">선호지역</span>
+									</button></li>
+								<li><button class="resbtn" id="11" >
 										<span class="text">서울특별시</span>
 									</button></li>
-								<li><button class="resbtn" id="26" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="26" >
 										<span class="text">부산광역시</span>
 									</button></li>
-								<li><button class="resbtn" id="27" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="27" >
 										<span class="text">대구광역시</span>
 									</button></li>
-								<li><button class="resbtn" id="28" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="28" >
 										<span class="text">인천광역시</span>
 									</button></li>
-								<li><button class="resbtn" id="29" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="29" >
 										<span class="text">광주광역시 </span>
 									</button></li>
-								<li><button class="resbtn" id="30" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="30" >
 										<span class="text">대전광역시</span>
 									</button></li>
-								<li><button class="resbtn" id="31" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="31" >
 										<span class="text">울산광역시</span>
 									</button></li>
-								<li><button class="resbtn" id="36" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="36" >
 										<span class="text">세종특별자치시</span>
 									</button></li>
-								<li><button class="resbtn" id="41" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="41" >
 										<span class="text">경기도</span>
 									</button></li>
-								<li><button class="resbtn" id="42" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="42" >
 										<span class="text">강원도</span>
 									</button></li>
-								<li><button class="resbtn" id="43" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="43" >
 										<span class="text">충청북도</span>
 									</button></li>
-								<li><button class="resbtn" id="44" onclick="sido_codebtn();"><%--.resbtn val id = this.getid() data{id:id}  --%>
+								<li><button class="resbtn" id="44" ><%--.resbtn val id = this.getid() data{id:id}  --%>
 										<span class="text">충청남도</span>
 									</button></li>
-								<li><button class="resbtn" id="45" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="45" >
 										<span class="text">전라북도</span>
 									</button></li>
-								<li><button class="resbtn" id="46" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="46" >
 										<span class="text">전라남도</span>
 									</button></li>
-								<li><button class="resbtn" id="47" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="47" >
 										<span class="text">경상북도</span>
 									</button></li>
-								<li><button class="resbtn" id="48" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="48" >
 										<span class="text">경상남도</span>
 									</button></li>
-								<li><button class="resbtn" id="50" onclick="sido_codebtn();">
+								<li><button class="resbtn" id="50" >
 										<span class="text">제주특별자치도</span>
-									</button></li>
-								<li><button class="resbtn" id="1">
-										<span class="text">선호극장1</span>
-									</button></li>
-								<li><button class="resbtn" id="2">
-										<span class="text">선호극장2</span>
-									</button></li>
-								<li><button class="resbtn" id="3">
-										<span class="text">선호극장3</span>
 									</button></li>
 							</ul>
 						</div>
 						<%--/sidolist --%>
-				
-
-					<%--dogunlist --%>
-					<div class=gugunlist>
-						<ul>
-							<c:if test="${!empty glist}">
-								<c:forEach var="a" items="${glist}">
-									<li>${a.gugun_name}</li>
-								</c:forEach>
-							</c:if>
-							<c:if test="${empty glist}">
-								<li>목록이 없습니다.</li>
-							</c:if>
-
-						</ul>
-					</div>
-					<%--/dogunlist --%>
+		
 				</div>
 				<%--all-list --%>
 
@@ -126,32 +106,12 @@
 		<%--location-choice --%>
 
 		<div class="theater-choice">
-			<p>극장</p>
+			<p>연극</p>
 			<div class=list-area id=tc-list-area>
 
 				<div class=all-list id="tc-all-list">
 
-					<div class=list>
-						<ul>
-							<li><button class="resbtn">
-									<span class="theater-grade">12</span> <span class="text">다만
-										탁에서 구하소서</span>
-								</button></li>
-							<li><button class="resbtn">
-									<span class="theater-grade">12</span> <span class="text">다만
-										탁에서 구하소서</span>
-								</button></li>
-							<li><button class="resbtn">
-									<span class="theater-grade">12</span> <span class="text">다만
-										탁에서 구하소서</span>
-								</button></li>
-							<li><button class="resbtn">
-									<span class="theater-grade">12</span> <span class="text">다만
-										탁에서 구하소서</span>
-								</button></li>
-						</ul>
-					</div>
-
+				<div class=theaterlist id="theaterlist1" ></div>
 
 
 				</div>
@@ -164,196 +124,194 @@
 
 				<div class=all-list id="dc-all-list">
 
-
-					<div id="calendarForm"></div>
-
+				
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<!-- quick-reservation -->
+	
+	<jsp:include page="../../include/footer.jsp"/>
 </body>
 
 
 
-<%-- 달력  js --%>
 
 <script>
-	(function() {
-		calendarMaker($("#calendarForm"), new Date());
-	})();
 
-	var nowDate = new Date();
-	function calendarMaker(target, date) {
-		if (date == null || date == undefined) {
-			date = new Date();
-		}
-		nowDate = date;
-		if ($(target).length > 0) {
-			var year = nowDate.getFullYear();
-			var month = nowDate.getMonth() + 1;
-			$(target).empty().append(assembly(year, month));
-		} else {
-			console.error("custom_calendar Target is empty!!!");
-			return;
-		}
 
-		var thisMonth = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1);
-		var thisLastDay = new Date(nowDate.getFullYear(),
-				nowDate.getMonth() + 1, 0);
 
-		var tag = "<tr>";
-		var cnt = 0;
-		//빈 공백 만들어주기
-		for (i = 0; i < thisMonth.getDay(); i++) {
-			tag += "<td></td>";
-			cnt++;
-		}
-
-		//날짜 채우기
-		for (i = 1; i <= thisLastDay.getDate(); i++) {
-			if (cnt % 7 == 0) {
-				tag += "<tr>";
-			}
-
-			tag += "<td><button>" + i + "</button></td>";
-			cnt++;
-			if (cnt % 7 == 0) {
-				tag += "</tr>";
-			}
-		}
-		$(target).find("#custom_set_date").append(tag);
-		calMoveEvtFn();
-
-		function assembly(year, month) {
-			var calendar_html_code = "<table class='custom_calendar_table'>"
-					+ "<colgroup>"
-					+ "<col style='width:81px'/>"
-					+ "<col style='width:81px'/>"
-					+ "<col style='width:81px'/>"
-					+ "<col style='width:81px'/>"
-					+ "<col style='width:81px'/>"
-					+ "<col style='width:81px'/>"
-					+ "<col style='width:81px'/>"
-					+ "</colgroup>"
-					+ "<thead class='cal_date'>"
-					+ "<th><button type='button' class='prev'><</button></th>"
-					+ "<th colspan='5'><p><span>"
-					+ year
-					+ "</span>년 <span>"
-					+ month
-					+ "</span>월</p></th>"
-					+ "<th><button type='button' class='next'>></button></th>"
-					+ "</thead>"
-					+ "<thead  class='cal_week'>"
-					+ "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>"
-					+ "</thead>" + "<tbody id='custom_set_date'>" + "</tbody>"
-					+ "</table>";
-			return calendar_html_code;
-		}
-
-		function calMoveEvtFn() {
-			//전달 클릭
-			$(".custom_calendar_table").on(
-					"click",
-					".prev",
-					function() {
-						nowDate = new Date(nowDate.getFullYear(), nowDate
-								.getMonth() - 1, nowDate.getDate());
-						calendarMaker($(target), nowDate);
-					});
-			//다음날 클릭
-			$(".custom_calendar_table").on(
-					"click",
-					".next",
-					function() {
-						nowDate = new Date(nowDate.getFullYear(), nowDate
-								.getMonth() + 1, nowDate.getDate());
-						calendarMaker($(target), nowDate);
-					});
-			//일자 선택 클릭
-			$(".custom_calendar_table").on(
-					"click",
-					"td",
-					function() {
-						$(".custom_calendar_table .select_day").removeClass(
-								"select_day");
-						$(this).removeClass("select_day")
-								.addClass("select_day");
-					});
-		}
-	}
-	
-	<%--
-	$('.resbtn').click(function(){
-		var sido_code;
-		const sido_codeInfo ={
-			sido_code : document.getElementById(this) //시도코드 id값을 sido_code에 넣음
-		} 
-		
-		$.ajax({
-			url : "/controller/IY_getGugun",
-			type : "POST",
-			cache : false,
-			data : JSON.stringify(sido_codeInfo),
-			headers:{"Content-Type ":"application/json"},
-			success : function(data) {
-				
-			
-				//$('#id').text(data);
-				//alert('success');
-			},
-	error : function(request, status, error) {
-		var msg = "ERROR : " + request.status + "<br>"
-		msg += +"내용 : " + request.responseText + "<br>" + error;
-		console.log(msg);
-	}
-});
-	});
-	--%>
-	<%-- sido 버튼 클릭시 해당 값 출력하기 onclick="sido_codebtn();" --%>
-
+	<%-- sido 버튼 클릭시 해당 값 출력하기 onclick="sido_codebtn();"--%> 
+<%--
 	function sido_codebtn() {
-
-		
 		var sido_code;
 		const sido_codeInfo ={
 			sido_code : document.getElementById(this) //시도코드 id값을 sido_code에 넣음
 		} 
 			console.log(sido_code);
-			
-			$.ajax({
-				url : "/controller/IY_getGugun",
-				type : "POST",
-				cache : false,
-				data : JSON.stringify(sido_codeInfo),
-			  
-				headers:{"Content-Type ":"application/json"},
-				success : function(data) {
-					$('#id').text(data);
-					window.location.reload();
-					
-					//alert('success');
-				},
+	
+	$.ajax({
+		url : "IY_getGugun",
+		type : "POST",
+		data : JSON.stringify(sido_codeInfo),
+		headers:{"Content-Type ":"application/json"},
+		success : function() {
+			alert('success');
+		
+			//$('#id').text(data);
+		},
 		error : function(request, status, error) {
 			var msg = "ERROR : " + request.status + "<br>"
 			msg += +"내용 : " + request.responseText + "<br>" + error;
 			console.log(msg);
 		}
 	});
-	};	
+	};	--%>
+	 
+	
+	$('.resbtn').click(function(){
+		//$.trim($('#boardasdf').val())
+		//var sido_code = $(this).attr("id");
+		var td_location = $(this).text();
+		td_location= $.trim(td_location)
+		console.log(td_location)
+		
+		
+		const td_locationInfo ={
+			td_locationI:td_location
+		} 
+		
+		console.log(td_locationInfo);
+		
+		$('#theaterlist1').html('');
+	 	$.ajax({
+			url: "IY_getTheater",
+			type : "POST",
+			data : JSON.stringify(td_locationInfo), //json을 String 타입으로 전송시킨다. 서버로 보낼때는 String으로 보내야하잖아
+			
+			 headers : { // Http header
+			      "Content-Type" : "application/json",
+			    },
+			//data를 못읽거나  못가져온다.   data.
+			success : function(data) {		
+ 				$.each(data, function(index, item){
+ 					$('#theaterlist1').append("<li><button id= 'resbtn02' class='resbtn02' onclick='\getTheaterTime(this)\'>"+item.td_title+"</button><span class='span02' id='span02'>"+item.td_location+"</span></li>");
+ 					
+				});
+ 			
+			    }, //success 
+			    
+		});// $.ajax
+	    
+	}); //$('.resbtn').click(function()
+
+			
+			
+			
+function getTheaterTime(a){
+		
+		
+		var theater_name = $(a).text();
+		var td_location = $('#span02').text();
+		
+		console.log(theater_name);
+		
+		console.log(td_location)
+		
+		
+		const theater_nameInfo ={
+			theater_nameI:theater_name,
+			td_locationI:td_location
+	} 
+	
+
+	console.log(theater_nameInfo);
+	
+		
+	$('#dc-all-list').html('');
+	$.ajax({
+		url: "IY_getTheaterTime",
+		type : "POST",
+		data : JSON.stringify(theater_nameInfo), //json을 String 타입으로 전송시킨다. 서버로 보낼때는 String으로 보내야하잖아
+		
+		 headers : { // Http header
+		      "Content-Type" : "application/json",
+		    },
+		//data를 못읽거나  못가져온다.   data.
+		success : function(data) {		
+				$.each(data, function(index, item){
+					$('#dc-all-list').append("<li><button id = 'resbtn03' class='resbtn03' onclick='\checkRes(this)\'>"+item.td_runtime+"</button><span class='span03' id='span03'>"+item.td_location+"</span><span class='span04' id='span04'>"+item.td_title+"</span></li>");	
+						
+			});
+		    }, //success    
+	});// $.ajax  
+}	
+
+function checkRes(a){
+	var answer = confirm("예매 하시겠 습 니 까?")
+	var td_location = $('#span03').text();
+	var td_title = $('#span04').text();
+	var td_runtime = $(a).text()
+	if(answer){
+	    location.href = '/controller/IY_re02?td_locationI='+td_location+'&td_runtimeI='+td_runtime+'&theater_nameI='+td_title;
+
+}//if
+
+else{
+	return false;
+}
+
+}//checkRes()
+
+/*
+function checkRes(a){
+	var answer = confirm("예매 하시겠 습 니 까?")
+	var td_location = $('#span03').text();
+	var td_title = $('#span04').text();
+	var td_runtime = $(a).text()
+	
+	//alert(td_runtime)
+	//console.log(td_runtime)
+	//alert("td_location :"+td_location)
+	//console.log(td_location)
+	//alert("td_title :"+td_title)
+	//console.log(td_title)
+	
+	if(answer){
+		
+		const td_runtimeInfo={
+			td_runtimeI: td_runtime,
+			theater_nameI:td_title,
+			td_locationI:td_location
+		}
+		
+		alert(td_runtimeInfo)
+		console.log(td_runtimeInfo)
+
+		$.ajax({
+		url: "../controller/IY_re02",
+		type : "GET",
+		data : JSON.stringify(td_runtimeInfo), //json을 String 타입으로 전송시킨다. 서버로 보낼때는 String으로 보내야하잖아
+		
+		 headers : { // Http header
+		      "Content-Type" : "application/json",
+		   },
+		//data를 못읽거나  못가져온다.   data.
+		//success : function(data) {	
+			
+			//	alert("data : "+data.td_location)
+				//  window.location.href = "subPage.html?index=" + index;
+               //window.location.href="../controller/IY_re02?td_locationI="+data.td_location
+		   // }, //success    
+	});// $.ajax  
+	}//if
+	
+	else{
+		return false;
+	}
+}//checkRes()
+*/
 
 </script> 
-
-
 </html>
-
-
-
-
-
-
-
-
-
-
