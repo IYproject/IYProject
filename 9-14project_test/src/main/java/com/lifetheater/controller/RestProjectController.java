@@ -30,17 +30,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import com.lifetheater.service.BasicTheaterService;
 import com.lifetheater.service.BoardService;
 import com.lifetheater.service.GugunService;
 import com.lifetheater.service.RepService;
 import com.lifetheater.service.UserService;
 import com.lifetheater.service.UserSha256;
+import com.lifetheater.vo.BasicTheaterVO;
 import com.lifetheater.vo.FBoardVO;
 import com.lifetheater.vo.FRepContVO;
 import com.lifetheater.vo.FReplyVO;
 import com.lifetheater.vo.GugunVO;
+import com.lifetheater.vo.LocationTitleTimeJsonVO;
 import com.lifetheater.vo.NBoardVO;
 import com.lifetheater.vo.PBoardVO;
+import com.lifetheater.vo.TheaterTimeVO;
+import com.lifetheater.vo.TicketingInfoVO;
 import com.lifetheater.vo.UserVO;
 
 @RestController
@@ -55,6 +60,9 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 	
 	@Autowired
 	private BoardService bservice;
+	
+	@Autowired
+	private BasicTheaterService basicTheaterService;
 
 	@RequestMapping(value="/confirmEmail",method=RequestMethod.POST)
 	public ResponseEntity<String> confiem_email(@RequestBody UserVO user) {//이메일중복확인
@@ -272,13 +280,7 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 			}
 			return entity;
 		}
-			
-	/*
-	 * @PostMapping("IY_getGugun") public List<GugunVO> getGugun(@RequestBody int
-	 * sido_code, Model m){ List<GugunVO> glist =
-	 * this.gugunService.getGugun(sido_code); m.addAttribute("glist",glist); return
-	 * glist; }
-	 */
+
 		
 		@PostMapping("/fbdelete")
 		public void fbdelete(@RequestBody FBoardVO fboard) {
@@ -320,6 +322,91 @@ public class RestProjectController {//ajax로 문자열을 받기위해 사용
 			}
 			
 			return entity;
+		}
+		
+		@PostMapping(value="/td_imgInsert",produces = "application/json")
+		public Object tdImgInsert(@RequestParam("file") MultipartFile multipartFile) {
+			
+			
+			Map<String, Object> object = new HashMap<String, Object>();
+			
+			String fileRoot = "C:\\theater\\board\\";	//저장될 외부 파일 경로
+			
+			String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+			
+			File targetFile = new File(fileRoot + savedFileName);	
+			
+			try {
+				InputStream fileStream = multipartFile.getInputStream();
+				FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+				System.out.println("파일 저장 성공");
+			/*
+			 * object.put("url",fileRoot); object.put("fileName", savedFileName);
+			 */
+				object.put("url","/controller/theater/board/"+savedFileName);
+				//this.Service.basictheaterInsert(tdVO);
+			System.out.println("등록 성공");
+			} catch (IOException e) {
+				FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+				object.put("responseCode", "error");
+				e.printStackTrace();
+				System.out.println("에러발생");
+			}
+			return object;
+		}
+		
+		@PostMapping(value="/td_insert",produces = "application/json")
+		public Object tdInsert(@RequestBody BasicTheaterVO basicTheaterVO) {
+			Map<String,Object> object = new HashMap<>();
+			basicTheaterService.basictheaterInsert(basicTheaterVO);
+			int td_no = basicTheaterVO.getTd_no();
+			System.out.println(td_no);
+			object.put("td_no",td_no);
+			return object;
+		}
+		
+		@PostMapping(value="/ticket_insert")
+		public ResponseEntity<Void> ticketInsert(@RequestBody TicketingInfoVO ticketVO){
+			ResponseEntity<Void> entity = null;
+			try {				
+				this.basicTheaterService.ticketInsert(ticketVO);
+				entity = new ResponseEntity<Void>(HttpStatus.OK);
+			}catch(Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		
+		//첫번째 예매 페이지에서 시도를 클릭하면 시도엥 해당하는 연극을 페이지에 출력하는 메서드
+		@PostMapping(value = "IY_getTheater",produces="application/json")
+		public List<BasicTheaterVO> getTheaterName(@RequestBody LocationTitleTimeJsonVO lotitivo, Model m){
+			System.out.println(lotitivo.getTd_locationI());
+			System.out.println(lotitivo.getTheater_nameI());
+			System.out.println(lotitivo.getTd_runtimeI());
+			List<BasicTheaterVO> glist = this.gugunService.getTheater(lotitivo.getTd_locationI());
+			for(BasicTheaterVO vo : glist) {
+				System.out.println(vo.getTd_title());
+			}
+			return glist;
+		}
+		
+		//첫번째 예매 페이지에서 연극을 클릭하면 , 연극의 예약 가능 날짜를 출력하는 메서드
+		@PostMapping(value = "IY_getTheaterTime",produces="application/json")
+		public List<TheaterTimeVO> getTheaterTime(@RequestBody LocationTitleTimeJsonVO lotitivo, Model m){
+			System.out.println(lotitivo.getTd_locationI());
+			System.out.println(lotitivo.getTheater_nameI());
+			System.out.println(lotitivo.getTd_runtimeI());
+			List<TheaterTimeVO> g2list = this.gugunService.getTime(lotitivo.getTheater_nameI());
+			for(TheaterTimeVO vo : g2list) {
+				System.out.println(vo.getTd_runtime());
+				System.out.println(vo.getTd_location());
+				
+			}
+			return g2list;
 		}
 		
 		

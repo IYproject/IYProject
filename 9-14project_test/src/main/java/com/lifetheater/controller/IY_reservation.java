@@ -191,6 +191,7 @@ public class IY_reservation {
 			System.out.println(mbttvo3.getTd_tinfo());
 			String td_tinfo = mbttvo3.getTd_tinfo();
 			m.addAttribute("td_tinfo",td_tinfo);
+			m.addAttribute("mbttvo", mbttvo3);
 		}catch(Exception e) {
 			System.out.println(e);
 		}
@@ -228,7 +229,6 @@ public class IY_reservation {
 			revo.setTd_runtime(td_runtime);
 			revo.setTd_stprice(td_stprice);
 			revo.setValue1(value1);
-			revo.setCost2(cost2);
 			revo.setTotalCost(totalCost);
 			
 			String email= null;

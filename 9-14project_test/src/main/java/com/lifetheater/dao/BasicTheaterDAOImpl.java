@@ -27,9 +27,10 @@ public class BasicTheaterDAOImpl implements BasicTheaterDAO {
 	}
 
 	@Override
-	public BasicTheaterDAO theaterDCont(int td_num) {
-		return this.sqlSession.selectOne("selectTDCONT", td_num);
+	public BasicTheaterVO basictheaterCont(int td_no) {
+		return this.sqlSession.selectOne("selectTDCONT", td_no);
 	}
+
 
 	@Override
 	public void theaterDUpdate(BasicTheaterVO theaterVO) {
@@ -42,7 +43,7 @@ public class BasicTheaterDAOImpl implements BasicTheaterDAO {
 	}
 
 	@Override
-	public List<BasicTheaterVO> getDlist(BasicTheaterVO theaterboard) {
+	public List<BasicTheaterVO> gettdlist(BasicTheaterVO theaterboard) {
 		return this.sqlSession.selectList("gettdlist", theaterboard);
 	}
 

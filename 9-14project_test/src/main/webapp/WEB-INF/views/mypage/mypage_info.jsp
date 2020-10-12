@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,13 @@
               	  ${userInfo.phone}
               	</td></tr>
               <tr><th>이메일</th><td>${userInfo.email}</td></tr>
-              <tr><th>비밀번호</th><td><button>비밀번호 변경</button></td></tr>
+              <tr><th>비밀번호</th><td>
+                <c:if test="${login.loginWay eq 1}">
+                  <button>비밀번호 변경</button></td></tr>
+                </c:if>
+                <c:if test="${login.loginWay ne 1}">
+                  <p> 권한이 없습니다 </p>
+                </c:if>
             </table>
           </div>
           

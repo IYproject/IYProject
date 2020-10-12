@@ -39,48 +39,20 @@
 
 		<div class="list_img_lazyload">
 			<div class="list_wrap_infoBox">
-			<a style="cursor: pointer;" onclick="location='IY_theater_view'" title="연극 [0]"> <!-- img box click -->
-				<div class="list_box_wrap" id="list_box_wrap">
-
 				<c:forEach var="td" items="${tdlist}">
+				<div class="list_box_wrap" id="list_box_wrap">
+				<a style="cursor: pointer;" onclick="location='IY_theater_view?td_no=${td.td_no}'" title="연극 [0]"> <!-- img box click -->
 					<img class="lazyload" 
 						src="${td.td_mainposter}" />
+				</a>
 					<div class="list_tit_txt">
 						<p class="list-b-tit1">${td.td_title}</p>
 						<p class="list-b-tit2">${td.td_viewdays}</p>
 						<p class="list-b-tit2">${td.td_location}</p>
 					</div>
+				</div>
+			
 					</c:forEach>
-				</div>
-			</a>
-			</div>
-			<div class="list_wrap_infoBox">
-			<a style="cursor: pointer;" onclick="location='IY_theater_view'" title="연극 [0]"> <!-- img box click -->
-				<div class="list_box_wrap">
-
-					<img class="lazyload" alt="연극 [name]"
-						src="./resources/img/image01.jpeg" style="">
-					<div class="list_tit_txt">
-						<p class="list-b-tit1">연극 [name]</p>
-						<p class="list-b-tit2">YYYY.MM.DD ~ YYYY.MM.DD</p>
-						<p class="list-b-tit2">location</p>
-					</div>
-				</div>
-			</a>
-			</div>
-			<div class="list_wrap_infoBox">
-			<a style="cursor: pointer;" onclick="location='IY_theater_view'" title="연극 [0]"> <!-- img box click -->
-				<div class="list_box_wrap">
-
-					<img class="lazyload" alt="연극 [name]"
-						src="./resources/img/image01.jpeg" style="">
-					<div class="list_tit_txt">
-						<p class="list-b-tit1">연극 [name]</p>
-						<p class="list-b-tit2">YYYY.MM.DD ~ YYYY.MM.DD</p>
-						<p class="list-b-tit2">location</p>
-					</div>
-				</div>
-			</a>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 package com.lifetheater.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lifetheater.service.BoardService;
 import com.lifetheater.service.RepService;
 import com.lifetheater.service.UserService;
+import com.lifetheater.service.UserSha256;
 import com.lifetheater.vo.FBoardVO;
 import com.lifetheater.vo.UserVO;
 
@@ -109,9 +111,60 @@ public class IY_mypage {
 	
 	
 	@GetMapping("IY_mypage_edit_user")
-	public String mypage_edit_user() {
+	public String mypage_edit_user(Model m,HttpSession session,HttpServletResponse response) throws Exception {
+		
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user==null) {
+			response.setContentType("text/html; charset=UTF-8");
+
+			   PrintWriter out = response.getWriter();
+			   out.println("<script>alert('로그인이 필요한 서비스입니다.');"
+			   		+ "location.href='/controller/IY_login'</script>");
+			   return null;
+		}
+		
+		if(user.getLoginWay()!="1") {
+			/*
+			 * response.setContentType("text/html; charset=UTF-8");
+			 * 
+			 * PrintWriter out = response.getWriter();
+			 * out.println("<script>alert('권한이 없습니다.');" + "history.go(-1)</script>");
+			 */
+			user = userService.searchUser(user);
+			m.addAttribute("userInfo",user);
+			   return "mypage/mypage_info";
+		}
+		
 		return "mypage/mypage_edit_user";
+	}//mypage_edit_user()
+	
+	@RequestMapping("IY_mypage_edit_user_ok")
+	public String mypage_edit_user_ok(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String inPwd = (String)request.getParameter("pw");
+		System.out.println(inPwd);
+
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user==null) {
+			response.setContentType("text/html; charset=UTF-8");
+
+		   PrintWriter out = response.getWriter();
+		   out.println("<script>alert('로그인이 필요한 서비스입니다.');"
+		   		+ "location.href='/controller/IY_login'</script>");
+		   return null;
+		}
+		System.out.println("user pwd : " + user.getPw());
+		// compare input pwd and login pwd
+		if(!UserSha256.encrypt(inPwd).equals(user.getPw())) {
+			response.setContentType("text/html; charset=UTF-8");
+
+			   PrintWriter out = response.getWriter();
+			   out.println("<script>alert('비밀번호가 일치하지 않습니다');"
+			   		+ "history.go(-1);"+"</script>");
+			   return null;
+		}
+		return "mypage/mypage_info";
 	}
+	
 	@GetMapping("IY_mypage_point")
 	public String mypage_point(HttpSession session,HttpServletResponse response)throws Exception {
 		
@@ -217,12 +270,10 @@ public class IY_mypage {
 	}
 	
 	
-	@GetMapping("mypage_get_board/email={useremail}")
-	public List<FBoardVO> getFBoardList(@PathVariable(name="useremail")String email){
-		
-		// 이메일에 해당하는
-		// 게시글 검색하여
-		// 리스트로 반환하기
-		return null;
-	}
+	/*
+	 * @GetMapping("mypage_get_board/email={useremail}") public List<FBoardVO>
+	 * getFBoardList(@PathVariable(name="useremail")String email){
+	 * 
+	 * // 이메일에 해당하는 // 게시글 검색하여 // 리스트로 반환하기 return null; }
+	 */
 }

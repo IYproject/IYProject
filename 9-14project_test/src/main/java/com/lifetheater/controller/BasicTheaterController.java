@@ -36,16 +36,18 @@ public class BasicTheaterController {
 	public String theater_list(Model m, HttpServletRequest request, 
 			@ModelAttribute BasicTheaterVO td) {
 		
-		//List<NBoardVO> list=Service.getnlist(nboard);
-		// List<TheaterDVO> list = Service.getDlist(tv);
-		 List<BasicTheaterVO> tdlist = new ArrayList<BasicTheaterVO>();
-		
-		 request.setAttribute("tdlist", tdlist);
+		List<BasicTheaterVO> tdlist = new ArrayList<BasicTheaterVO>();
+		tdlist=Service.gettdlist(td);
+		System.out.println("tlist : " + tdlist.size());
+		 m.addAttribute("tdlist", tdlist);
 		return "list_info/theater_list";
 	}
 	
 	@GetMapping("/IY_theater_view") //뷰페이지 상세 작성
-	public String theater_view() {
+	public String theater_view(int td_no, Model m, HttpServletRequest request ) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		BasicTheaterVO btview = this.Service.basictheaterCont(td_no);
+		m.addAttribute("btview",btview); 
 		return "list_info/theater_view";
 	}
 	

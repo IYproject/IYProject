@@ -17,6 +17,8 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/summernote/**" location="file:///C:/summernote/" />
+	<resources mapping="/theater/**" location="file:///C:/theater/" />
+	
 	<!-- C:\summernote\ 내컴퓨터 c드라이버 경로 file:///C:/summernote/ 이부분에 /summernote/를쓰면 되요 -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

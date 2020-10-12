@@ -12,10 +12,9 @@ public class ReservationVO {
     private String td_runtime;
     private String td_stprice;
     private String value1;
-    private String cost2;
     private String totalCost;
     private String email;
-
+    private String pur_date;
 }
 
 

@@ -35,20 +35,29 @@
         <p>회원정보</p>
       </div>
        <div class="clear"></div>
-        <form>
+        <form action="${pageContext.request.contextPath}/IY_mypage_edit_user_ok" onSubmit='return check()' method='POST'>
       <div class="mypage-edit-user-ck-pwd">
           <p>회원님의 개인정보 보호를 위해 비밀번호를 입력해야 합니다</p>
-          <input type="password" maxlenth="20" name="pwd" id="pwd" class="mypage-input-pwd">
+          <input type="password" maxlenth="20" name="pw" id="pwd" class="mypage-input-pwd">
           
           </div>
           <div class="mypage-edit-user-ck-pwd-btn">
-             <button>취소</button>
-             <button>확인</button>
-       
+             <button id=cancel>취소</button>
+             <button type="submit" id="ok">확인</button>
         </form>
       </div>
     </div>
     
+    <script>
+    function check(){
+    	if($("#pwd").val().trim()=='')
+    	return false;
+    }
+      $("#cancel").click(function(){
+    	  $("#pwd").val('').focus();
+      })
+    
+    </script>
     
   
     </div>

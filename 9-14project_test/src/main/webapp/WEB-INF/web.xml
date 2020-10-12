@@ -27,7 +27,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
-			<location>C:\\upload\\temp</location>
+			<!-- <location>C:\\upload\\temp</location>  -->
 			<!-- 이진파일 업로드 서버경로, 첨부파일은 실제 서버가 동작하는 컴퓨터내에 있는 폴더에 업로드 시켜야 하므로
 			c드라이브 밑에 upload폴더와 임시 업로드 파일이 저장할 temp폴더를 각각 생성-->
 			<max-file-size>20971520</max-file-size>

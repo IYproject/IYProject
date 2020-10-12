@@ -11,13 +11,13 @@ public interface BasicTheaterDAO {
 	
 	void theaterImgInsert(BasicTheaterVO theaterVO);
 	
-	BasicTheaterDAO theaterDCont(int td_num); //시퀀스 번호 기준으로 내용 가져오기
+	BasicTheaterVO basictheaterCont(int td_no); //시퀀스 번호 기준으로 내용 가져오기
 	
 	void theaterDUpdate(BasicTheaterVO theaterVO); //게시물 수정
 
 	void theaterDDelete(BasicTheaterVO theaterVO); //게시물 삭제
 	
-	public List<BasicTheaterVO> getDlist(BasicTheaterVO theaterboard); // 게시물 list로 넘길때 사용
+	public List<BasicTheaterVO> gettdlist(BasicTheaterVO theaterboard); // 게시물 list로 넘길때 사용
 
 	void ticketInsert(TicketingInfoVO ticketVO);
 	

@@ -16,29 +16,94 @@
 <script src="resources/js/summernote-ko-KR.js">
 	
 </script>
-
+<style type="text/css">
+.theater_view_title{
+word-break: break-all;
+    font-size: 35px;
+    color: #333;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: -0.003em;
+    font-family: 'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;
+    margin-bottom: 15px;
+}
+.theater_view_viewdays {
+    font-size: 15px;
+    color: #666
+}
+.theater_view_cont{
+font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    float: left;
+    line-height: 35px;
+}
+.theater_selectgrade,.select_location{
+    font-size: 15px;
+    color: #333;
+    clear: right;
+    margin: 0 0 3px 86px;
+    line-height: 35px;
+    position: relative;
+}
+.theater_td_ticketinginfo{
+    font-size: 15px;
+    color: #333;
+    clear: right;
+    margin: 0 0 3px 58px;
+    line-height: 35px;
+    position: relative;
+}
+.theater_td_actor{
+    font-size: 15px;
+    color: #333;
+    clear: right;
+    margin: 0 0 3px 86px;
+    line-height: 35px;
+    position: absolute;
+}
+.theater_view_guide{
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    line-height: 35px;
+}
+.theater_td_tinfo{
+margin-left: 2px;
+    color: #666;
+    line-height: 23px;
+    font-size: 14px;
+}
+.detailposterHeader{
+    display: inline-block;
+    height: 55px;
+    line-height: 55px;
+    width: 180px;
+    border-top: 3px solid #fff;
+    font-size: 22px;
+}
+img {
+display:block;
+}
+.td_posterBox{
+	display: inline-block;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../../include/header.jsp" />
-	
-	<form id="basic_theater_form" name="basic_theater_form" action="/IY_theater_write_ok" onsubmit="return false;" method="post">
 	
 	<div class="info_wrap" id="info_submit">
 				<!--큰 제목-->
 			<div class="detail_title_box">
 				<p>
-					<span>제목</span>${tdvo.td_title}
+					<span class="theater_view_title">${btview.td_title}</span><br>
+					<div style="margin:10px 0px;"></div>
+					<span class="theater_view_viewdays">${btview.td_viewdays}</span>
+					<div style="margin:10px 0px;"></div>
 				</p>
-				<br>
-				</div>
-					<p class="running_time">
-						<span>상영기간 </span><br><div id="td_viewdays">${tdvo.td_viewdays}</div> 
-						<br>
-						<span>YYYY.MM.DD~YYYY.MM.DD로 입력해주세요</span>
-					</p>
-					
-				<br>
-				</div>
+			</div>
+	</div>
 
 
 	<div class="detail_wrap_box">
@@ -48,8 +113,7 @@
 				<!-- poster upload -->
 				<br>
 				
-					<input id="file_upload" type="file"
-						multiple/> 
+					<img src="${btview.td_mainposter}" style="float: left;">
 				
 						<br>
 					<br>
@@ -60,28 +124,32 @@
 					<!--상품정보-->
 					<div class="detail_top_right_product">
 						<!--등급, 관람시간, 출연, 가격, 혜택-->
-							<div class="theater_agegradeBox">
-								등급 <div class="theater_selectgrade">${$tdvo.td_agegrade}</div>
+							<div class="theater_agegradeBox" style="display: inline-block;">
+								<span class="theater_view_cont">등급</span><div class="theater_selectgrade" style="display: inline-block;">${btview.td_agegrade}</div>
 							</div>
 							<br>
-							<div class="td_location_box" id="td_location_box">
-								지역 <div class="select_location">${tdvo.td_location}</div>
+							<div class="td_location_box" id="td_location_box" style="display: inline-block;">
+								<span class="theater_view_cont">지역</span> <div class="select_location" style="display: inline-block;">${btview.td_location}</div>
 							</div>
 							<br>
+							<br>		
+							<span class="theater_view_cont">관람시간</span><div class="theater_td_ticketinginfo" style="display: inline-block;">${btview.td_ticketinginfo}</div>
 							<br>
-							<p>관람시간&nbsp;&nbsp;&nbsp;<input type="text" id="td_runtime"></p>
 							<br>
-							<br>
-							<p>출연&nbsp;&nbsp;&nbsp;<input type="text" id="td_actor"></p>
+							<div style="overflow: hidden;">
+							<span class="theater_view_cont">출연</span><div class="theater_td_actor" style="display: inline-block;">${btview.td_actor}</div>
+							</div>
 							<br>
 							<br>
 						<div>
 							<p id="notice_tag">
 								<br>
-								<span>공연시간 안내</span>
+								<span class="theater_view_guide">공연시간 안내</span>
 								<br />
 								<br />
-								<textarea id="td_tinfo" rows="10px" cols="95px"></textarea>
+								<span class="theater_td_tinfo">
+									${btview.td_tinfo }
+								</span>
 							</p>
 						</div>
 
@@ -91,36 +159,18 @@
 								<br>
 								<br>
 					</div>
-					<!--포인트-->
-					<div class="detail_top_right_down">
-						<!--공연시간안내, 배송정보-->
-						<br>
-						<div id="roundDayBox">
-							<span>티켓 정보 입력</span>&nbsp;
-							<!-- <button onclick="ticketPlus();">+</button> -->
-							<br><br>
-								공연날짜 : <div class="td_ticketinginfo">${tdvo.td_ticketinginfo}</div>
-								<br>
-								
-								공연시간 :
-								<div name="starttime" id="starttime">${tdvo.td_runtime}</div>
-								
-								</p>
-							</span>
-							<br>
-						</div>
-					</div>
+				</div>
+			</div>
+			<div class="detail_low_view" style="border-top: 2px solid #333;text-align: center;">
+				<div>
+					<span class="detailposterHeader">상세 정보</span>
+				</div>
+				<div style="display: inline-block;">
+					${btview.td_detailposter}
 				</div>
 			</div>
 		</div>
 	</div>
-
-		<div class="detail_body_view">
-			<div class="detail_body_note">
-			${tdvo.td_detailposter}
-			</div>
-		</div>
-</form>
 
 
 	<jsp:include page="../../include/footer.jsp" />

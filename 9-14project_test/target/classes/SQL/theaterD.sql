@@ -20,7 +20,7 @@ create table basictheater(
  td_ticketinginfo varchar2(200), --1회시간 (해당 날짜 제목)
  td_check char not null, --게시글 승인 확인 // 등급 0 // 취소 1 // 대기 2 확인
  td_signUp_date date,  -- 승인 요청 날짜
- td_location varchar2(200) not null,--시,도
+ td_location varchar2(200) not null--시,도
 )
 --번호(td_no) 이메일(email) 제목(td_title) 상영기간(td_viewdays) 등급(td_agegrade), 출연진(td_actor),
 --공연시간 안내(td_tinfo),메인포스터(td_mainposter),게시판 내용(td_detailposter),1회 시간(td_ticketinginfo),

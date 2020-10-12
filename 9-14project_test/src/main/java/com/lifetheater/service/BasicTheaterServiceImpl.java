@@ -21,8 +21,8 @@ public class BasicTheaterServiceImpl implements BasicTheaterService {
 	}
 
 	@Override
-	public BasicTheaterDAO basictheaterCont(int td_num) {
-		return this.basicTheaterDAO.theaterDCont(td_num);
+	public BasicTheaterVO basictheaterCont(int td_no) {
+		return this.basicTheaterDAO.basictheaterCont(td_no);
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class BasicTheaterServiceImpl implements BasicTheaterService {
 	}
 
 	@Override
-	public List<BasicTheaterVO> getDlist(BasicTheaterVO basictheaterVO) {
-		return this.basicTheaterDAO.getDlist(basictheaterVO);
+	public List<BasicTheaterVO> gettdlist(BasicTheaterVO basictheaterVO) {
+		return this.basicTheaterDAO.gettdlist(basictheaterVO);
 	}
 
 	@Override

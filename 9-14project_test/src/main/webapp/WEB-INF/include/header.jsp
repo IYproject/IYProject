@@ -36,7 +36,7 @@
     </div>
     
     <div class="top-menu-center">
-      <a href="IY_listLoad">연극찾기</a>
+      <a href="IY_theater_list">연극찾기</a>
       <a href="IY_res-conts">예매하기</a>
       <a href="IY_board_nlist">게시판</a>
       <a href="support">고객센터</a>

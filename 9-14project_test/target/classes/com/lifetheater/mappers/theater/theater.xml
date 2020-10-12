@@ -12,6 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </selectKey>
 	</insert>
 	
+	<select id="gettdlist" resultType="tdvo">
+		select td_no,td_title,td_viewdays,td_mainposter,td_location from basictheater where td_check='2' order by td_no desc
+	</select>
+	
 	<select id="tdvo_list">
 		
 	
@@ -24,6 +28,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	</delete>
+	
+	<select id="selectTDCONT" resultType="tdvo">
+		select * from basictheater where td_no=#{td_no}
+	</select>
 	
 	<insert id="kicketInsert">
 		insert into ticketingInfo values(#{td_no},seq_ticketing_no.nextval,#{td_runtime},#{td_stgrade},#{td_stprice})
