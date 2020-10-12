@@ -19,8 +19,9 @@
       	<a href="IY_mypage">나의 인연</a>
       </p>
       <ul>
-        <li><a href="IY_mypage_reservation">예매내역</a></li>
-        <li><a href="IY_mypage_point">포인트 내역</a></li>
+        <c:if test="${login.membertype eq '1'.charAt(0) }">
+          <li><a href="IY_mypage_reservation">예매내역</a></li>
+        </c:if>
         <li><a href="IY_mypage_board">게시글 내역</a>
         <li><a href="IY_mypage_edit_user">회원정보</a>
         </li>
@@ -50,20 +51,22 @@
               <tr><th>이메일</th><td>${userInfo.email}</td></tr>
               <tr><th>비밀번호</th><td>
                 <c:if test="${login.loginWay eq 1}">
-                  <button>비밀번호 변경</button></td></tr>
+                  <button type="button" id="ch_pwd" >비밀번호 변경</button></td></tr>
                 </c:if>
                 <c:if test="${login.loginWay ne 1}">
                   <p> 권한이 없습니다 </p>
                 </c:if>
             </table>
           </div>
-          
+          <script>
+            $("#ch_pwd").click(function(){
+            	location='IY_mypage_edit_pwd';
+            })
+          </script>
         </form>
       </div>
     </div>
     </div>
-  
-    
   </div>
 
 

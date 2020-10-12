@@ -22,8 +22,9 @@
       	<a href="IY_mypage">나의 인연</a>
       </p>
       <ul>
-        <li><a href="IY_mypage_reservation">예매내역</a></li>
-        <li><a href="IY_mypage_point">포인트 내역</a></li>
+        <c:if test="${login.membertype eq '1'.charAt(0) }">
+          <li><a href="IY_mypage_reservation">예매내역</a></li>
+        </c:if>
         <li><a href="IY_mypage_board">게시글 내역</a>
         <li><a href="IY_mypage_edit_user">회원정보</a>
         </li>
@@ -47,7 +48,7 @@
         </div>
         
         <%-- 선호 극장 --%>
-        <div class="mypage-home-box-right">
+        <%-- <div class="mypage-home-box-right">
           <div class="mypage-home-box-theater">
             <p>선호극장</p>
             <a href="IY_mypage_edit_theater">변경&gt;</a>
@@ -71,7 +72,7 @@
                 
               </div>
           </div>
-        </div>
+        </div> --%>
         
       </div>
       
